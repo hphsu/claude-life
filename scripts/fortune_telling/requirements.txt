@@ -1,0 +1,34 @@
+# Fortune-Telling System Dependencies
+# Professional-grade astronomical and calendrical calculations
+
+# ============================================
+# Core Calendar & Time Libraries
+# ============================================
+lunarcalendar>=0.0.9          # Chinese lunar calendar conversion
+pytz>=2024.1                  # Timezone handling and DST support
+python-dateutil>=2.8.2        # Advanced date parsing and manipulation
+ephem>=4.1.5                  # Astronomical calculations (fallback)
+
+# ============================================
+# Professional Astrology Library
+# ============================================
+pyswisseph>=2.10.3.2          # Swiss Ephemeris - professional planetary calculations
+                              # Most accurate ephemeris data for astrology
+
+# ============================================
+# Utility Libraries
+# ============================================
+pydantic>=2.5.0               # Data validation and settings management
+typing-extensions>=4.9.0      # Extended type hints for better code quality
+
+# ============================================
+# Optional: Web Integration (Future)
+# ============================================
+# requests>=2.31.0            # HTTP library for external API calls
+# beautifulsoup4>=4.12.0      # HTML parsing (if scraping reference data)
+
+# ============================================
+# Development & Testing
+# ============================================
+pytest>=7.4.0                 # Testing framework
+pytest-cov>=4.1.0             # Test coverage reporting

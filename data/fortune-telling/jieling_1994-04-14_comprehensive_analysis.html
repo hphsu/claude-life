@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jieling 命理綜合分析報告</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "PingFang TC", "Microsoft JhengHei", "Heiti TC", sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .birth-info {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .birth-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .four-pillars {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .pillar {
+            background: rgba(255,255,255,0.15);
+            padding: 15px 25px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 100px;
+        }
+
+        .pillar-label {
+            font-size: 0.9em;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+
+        .pillar-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 2em;
+            color: #667eea;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-icon {
+            font-size: 1.2em;
+        }
+
+        .subsection {
+            margin-bottom: 30px;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .subsection-title {
+            font-size: 1.4em;
+            color: #764ba2;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .subsection p {
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #ff6b6b;
+        }
+
+        .highlight-title {
+            font-weight: bold;
+            color: #c92a2a;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .score-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 8px 0;
+        }
+
+        .score-label {
+            min-width: 120px;
+            font-weight: 500;
+        }
+
+        .score-progress {
+            flex: 1;
+            height: 25px;
+            background: #e9ecef;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .score-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: width 1s ease;
+        }
+
+        .recommendation-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-left: 4px solid #667eea;
+        }
+
+        .recommendation-title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e7f5ff;
+            color: #1971c2;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            margin: 5px 5px 5px 0;
+            font-weight: 500;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.9em;
+        }
+
+        .footer p {
+            margin: 5px 0;
+            opacity: 0.8;
+        }
+
+        .method-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin: 5px;
+            font-weight: 600;
+        }
+
+        .consensus-box {
+            background: linear-gradient(135deg, #c3f0c8 0%, #78d3b0 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 5px solid #37b24d;
+        }
+
+        .consensus-title {
+            font-weight: bold;
+            color: #2b8a3e;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        ul, ol {
+            margin-left: 25px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+            margin: 40px 0;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            .content {
+                padding: 20px;
+            }
+            .section-title {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>🔮 命理綜合分析報告 🔮</h1>
+            <p style="font-size: 1.2em; margin-top: 10px;">Jieling 的完整命盤解析</p>
+
+            <div class="birth-info">
+                <div class="birth-info-grid">
+                    <div class="info-item">
+                        <div class="info-label">姓名</div>
+                        <div class="info-value">Jieling</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">性別</div>
+                        <div class="info-value">女</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">出生地</div>
+                        <div class="info-value">台北</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">陽曆生辰</div>
+                        <div class="info-value">1994年4月14日 21:40</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">農曆生辰</div>
+                        <div class="info-value">1994年3月4日</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">節氣</div>
+                        <div class="info-value">立夏</div>
+                    </div>
+                </div>
+
+                <div class="four-pillars">
+                    <div class="pillar">
+                        <div class="pillar-label">年柱</div>
+                        <div class="pillar-value">癸酉</div>
+                    </div>
+                    <div class="pillar">
+                        <div class="pillar-label">月柱</div>
+                        <div class="pillar-value">丁巳</div>
+                    </div>
+                    <div class="pillar">
+                        <div class="pillar-label">日柱</div>
+                        <div class="pillar-value">壬午</div>
+                    </div>
+                    <div class="pillar">
+                        <div class="pillar-label">時柱</div>
+                        <div class="pillar-value">辛亥</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <!-- Introduction -->
+            <div class="section">
+                <div class="consensus-box">
+                    <div class="consensus-title">📊 分析方法</div>
+                    <p>本報告採用三種傳統命理系統進行綜合分析：</p>
+                    <div style="margin-top: 15px;">
+                        <span class="method-badge">八字命理（四柱推命）</span>
+                        <span class="method-badge">紫微斗數</span>
+                        <span class="method-badge">西洋占星學</span>
+                    </div>
+                    <p style="margin-top: 15px;">通過三種系統的交叉驗證，提供更全面、準確的人生指引。</p>
+                </div>
+            </div>
+
+            <!-- Section 1: 八字命理分析 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">☯️</span>
+                    一、八字命理分析
+                </h2>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">1.1 四柱結構解析</h3>
+                    <p><strong>八字組合：</strong>癸酉（年）、丁巳（月）、壬午（日）、辛亥（時）</p>
+
+                    <div class="highlight-box">
+                        <div class="highlight-title">日元特質</div>
+                        <p><strong>壬水日元</strong>代表您的核心本質。壬水為江河之水，性格剛柔並濟，具有強大的適應力和包容性。您天生具有流動變化的特質，善於應對各種環境變化，思維靈活，學習能力強。</p>
+                    </div>
+
+                    <p><strong>年柱癸酉：</strong>代表祖輩基因和早年環境。癸水為雨露，酉金為刃，顯示家庭背景穩定，祖輩可能從事與金融、金屬、法律相關的行業。早年生活環境較為穩定，但可能缺乏過多的溫情。</p>
+
+                    <p><strong>月柱丁巳：</strong>代表父母宮和青年運勢。丁火為燭火，巳為火之本宮，顯示父母關係融洽，青年時期可能經歷一些情感波折，但整體向上發展。丁火對壬水日元形成剋制，代表您在成長過程中會面對一些挑戰和壓力，但這些經歷會磨練您的性格。</p>
+
+                    <p><strong>日柱壬午：</strong>日柱代表自身和配偶宮。壬午為水火既濟，顯示您內心常有矛盾和衝突，但也因此具有強大的平衡能力。配偶可能性格積極主動，與您形成互補關係。</p>
+
+                    <p><strong>時柱辛亥：</strong>代表子女宮和晚年運勢。辛金生壬水，亥水為壬水之根，顯示子女運佳，晚年生活安定富足，能夠得到子女的孝順和照顧。</p>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">1.2 五行分析</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>五行</th>
+                                    <th>數量</th>
+                                    <th>強度評估</th>
+                                    <th>影響說明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>水</strong></td>
+                                    <td>3（癸、壬、亥）</td>
+                                    <td>偏旺</td>
+                                    <td>智慧、靈活、適應力強，但需注意過度猶豫</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>火</strong></td>
+                                    <td>3（丁、巳、午）</td>
+                                    <td>偏旺</td>
+                                    <td>熱情、積極、行動力，但需防急躁衝動</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>金</strong></td>
+                                    <td>2（酉、辛）</td>
+                                    <td>適中</td>
+                                    <td>理性、果斷、執行力，提供穩定支持</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>木</strong></td>
+                                    <td>0</td>
+                                    <td>缺失</td>
+                                    <td>需補充：創造力、仁慈心、生長力</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>土</strong></td>
+                                    <td>0</td>
+                                    <td>缺失</td>
+                                    <td>需補充：穩定性、包容性、執行耐心</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="highlight-box">
+                        <div class="highlight-title">五行平衡建議</div>
+                        <p><strong>缺木：</strong>建議多接觸綠色植物，從事創意類工作，培養仁慈善良的品德。可在家中東方擺放綠色植物，或佩戴綠色飾品。</p>
+                        <p><strong>缺土：</strong>建議培養穩重踏實的性格，做事要有始有終。可從事房地產、建築、農業相關行業，或在家中中央位置擺放陶瓷、玉石類飾品。</p>
+                        <p><strong>水火平衡：</strong>您的八字中水火兩旺，容易形成內心衝突。建議修煉內心平靜，通過冥想、瑜伽等方式調和內在能量，避免情緒過於極端。</p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">1.3 十神格局</h3>
+                    <p>十神是八字命理中用來分析人際關係、性格特質和人生際遇的重要工具。以壬水日元為中心，分析周圍天干地支與日元的關係：</p>
+
+                    <ul>
+                        <li><strong>正印（辛金）：</strong>代表文化、教育、母親、長輩。您有較強的學習能力和文化修養，容易得到長輩的幫助和提攜。建議從事文化、教育、研究類工作。</li>
+                        <li><strong>比肩（癸水、亥水）：</strong>代表兄弟姐妹、競爭對手、獨立性。您性格獨立，有主見，但也需要學會與他人合作。兄弟姐妹關係融洽，但可能存在競爭。</li>
+                        <li><strong>偏財（丁火）：</strong>代表父親、財富、機遇。您有偏財運，容易獲得意外之財，但也需要注意理財。父親可能對您影響深遠，性格比較開朗外向。</li>
+                        <li><strong>正財（午火、巳火）：</strong>代表妻子（對男性）、固定收入、穩定財富。您的財運穩定，適合從事固定收入的工作。配偶可能性格溫和，善於理財。</li>
+                        <li><strong>食神（酉金）：</strong>通過月令巳火的轉化，酉金也帶有食神的特質，代表才華、表達、享受。您有藝術天賦，善於表達，喜歡美食和享受生活。</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <div class="highlight-title">格局特點</div>
+                        <p><strong>印財並見格局：</strong>您的八字中正印與財星同現，形成「財印相輔」的格局。這代表您既有文化修養，又有經濟頭腦，是難得的文武兼備之才。適合從事需要專業知識和商業頭腦的工作，如律師、會計師、教育培訓等。</p>
+                        <p><strong>水火既濟格局：</strong>壬午日柱形成水火既濟，代表您內心有強烈的理想和現實的矛盾，但也因此具有強大的創造力和變通能力。建議找到理想與現實的平衡點，將內在衝突轉化為前進的動力。</p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">1.4 大運流年分析</h3>
+                    <p>大運每十年一換，對人生運勢有重大影響。以下是您的大運流程：</p>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>年齡區間</th>
+                                    <th>大運干支</th>
+                                    <th>五行屬性</th>
+                                    <th>運勢特點</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>3-12歲</td>
+                                    <td>丙辰</td>
+                                    <td>火土</td>
+                                    <td>童年時期，學業順利，家庭環境溫暖</td>
+                                </tr>
+                                <tr>
+                                    <td>13-22歲</td>
+                                    <td>乙卯</td>
+                                    <td>木</td>
+                                    <td>青春期，創造力旺盛，學習成績優異</td>
+                                </tr>
+                                <tr>
+                                    <td>23-32歲</td>
+                                    <td>甲寅</td>
+                                    <td>木</td>
+                                    <td>事業起步期，充滿幹勁，但需防急躁</td>
+                                </tr>
+                                <tr style="background: #fff3bf;">
+                                    <td><strong>33-42歲</strong></td>
+                                    <td><strong>癸丑</strong></td>
+                                    <td><strong>水土</strong></td>
+                                    <td><strong>★ 當前大運（2027-2036）：事業穩定發展期，財運提升，但需注意健康</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>43-52歲</td>
+                                    <td>壬子</td>
+                                    <td>水</td>
+                                    <td>人生巔峰期，事業財運雙豐收，名利雙收</td>
+                                </tr>
+                                <tr>
+                                    <td>53-62歲</td>
+                                    <td>辛亥</td>
+                                    <td>金水</td>
+                                    <td>成熟穩重期，經驗豐富，地位穩固</td>
+                                </tr>
+                                <tr>
+                                    <td>63-72歲</td>
+                                    <td>庚戌</td>
+                                    <td>金土</td>
+                                    <td>收成期，財富積累，享受天倫之樂</td>
+                                </tr>
+                                <tr>
+                                    <td>73-82歲</td>
+                                    <td>己酉</td>
+                                    <td>土金</td>
+                                    <td>晚年安康，子孫孝順，晚景優渥</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="highlight-box">
+                        <div class="highlight-title">2024-2026年重要流年提示</div>
+                        <p><strong>2024年（甲辰年）：</strong>木土相配，工作上會有新的機會和挑戰。財運方面，上半年較為平穩，下半年可能有額外收入。感情方面，單身者可能遇到心儀對象，已婚者夫妻關係和睦。健康方面需注意脾胃和關節問題。</p>
+                        <p><strong>2025年（乙巳年）：</strong>木火相生，這是充滿活力和創造力的一年。事業上可能有重大突破，財運也會隨之提升。感情方面熱情高漲，但需注意避免衝動決定。健康狀況良好，精力充沛。</p>
+                        <p><strong>2026年（丙午年）：</strong>火旺之年，事業發展迅速，可能會有晉升或跳槽的機會。財運極佳，投資運勢旺盛。但需要注意不要過於急躁和衝動，穩紮穩打才是王道。感情方面可能會有波折，需要多溝通和理解。</p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">1.5 人生領域詳細解析</h3>
+
+                    <h4 style="color: #667eea; margin-top: 20px; margin-bottom: 10px;">▸ 事業運勢</h4>
+                    <p>您的八字顯示您是一個多才多藝、適應力強的人。壬水日元代表您思維靈活，學習能力強，善於溝通和表達。正印（辛金）加持，您有良好的教育背景和文化修養，適合從事需要專業知識的工作。</p>
+                    <p><strong>適合行業：</strong>教育培訓、文化傳媒、市場營銷、金融投資、法律諮詢、IT技術、醫療健康、藝術設計等。</p>
+                    <p><strong>事業發展建議：</strong></p>
+                    <ul>
+                        <li>充分發揮您的溝通能力和學習能力，不斷提升專業技能</li>
+                        <li>避免頻繁跳槽，選定一個方向後要堅持發展</li>
+                        <li>善於利用人脈資源，多與行業前輩交流學習</li>
+                        <li>30歲後事業運勢逐漸上揚，40-50歲是事業巔峰期</li>
+                        <li>可以考慮在35歲左右創業或擔任管理職位</li>
+                    </ul>
+
+                    <h4 style="color: #667eea; margin-top: 20px; margin-bottom: 10px;">▸ 財運分析</h4>
+                    <p>您的財運屬於穩中有升的類型。八字中財星（午火、巳火）明現，代表您有穩定的收入來源。偏財（丁火）顯現，也代表您有獲得意外之財的機會，如投資收益、獎金、遺產等。</p>
+                    <p><strong>財運特點：</strong></p>
+                    <ul>
+                        <li>年輕時財運較為平穩，主要依靠薪資收入</li>
+                        <li>30歲後財運逐漸提升，有多元化收入來源</li>
+                        <li>40-50歲是財富積累的黃金期，可以進行穩健投資</li>
+                        <li>偏財運較旺，但需要注意風險控制，不宜過度投機</li>
+                        <li>晚年財運穩定，有足夠的積蓄安享晚年</li>
+                    </ul>
+                    <p><strong>理財建議：</strong>建立多元化的投資組合，不要把所有資金放在一個籃子裡。可以考慮房地產、基金、股票等穩健型投資。避免過度借貸和高風險投資。30-40歲是積累財富的關鍵期，要注意開源節流。</p>
+
+                    <h4 style="color: #667eea; margin-top: 20px; margin-bottom: 10px;">▸ 感情婚姻</h4>
+                    <p>日柱壬午代表您的感情生活較為複雜，內心有強烈的情感波動。午火為您的配偶宮，顯示您的配偶性格積極主動，熱情開朗，但可能有些強勢。</p>
+                    <p><strong>感情特點：</strong></p>
+                    <ul>
+                        <li>早戀傾向，年輕時可能經歷幾段感情，但不易修成正果</li>
+                        <li>理想的結婚年齡在28-32歲之間</li>
+                        <li>配偶可能是通過工作、朋友介紹或社交活動認識</li>
+                        <li>婚後夫妻關係整體和睦，但可能有一些小摩擦</li>
+                        <li>需要學會溝通和妥協，避免因小事爭吵</li>
+                    </ul>
+                    <p><strong>理想配偶特質：</strong>性格開朗積極、有責任心、事業有成、善於溝通、尊重您的想法和選擇。生肖屬兔、羊、豬、虎的人與您較為相配。</p>
+                    <p><strong>感情建議：</strong>不要過於理想化對方，要接受對方的優點和缺點。婚姻需要雙方共同經營，多溝通、多理解、多包容。避免因為工作忙碌而忽視家庭，要平衡事業和家庭。</p>
+
+                    <h4 style="color: #667eea; margin-top: 20px; margin-bottom: 10px;">▸ 健康狀況</h4>
+                    <p>您的八字中水火兩旺，容易出現內熱外寒的情況。整體體質屬於中等偏上，但需要注意調理。</p>
+                    <p><strong>健康注意事項：</strong></p>
+                    <ul>
+                        <li><strong>心血管系統：</strong>火旺容易導致血壓偏高、心悸等問題，需要定期檢查，保持良好的生活習慣</li>
+                        <li><strong>腎臟泌尿系統：</strong>水旺代表腎臟功能較強，但也需要注意保養，多喝水，避免憋尿</li>
+                        <li><strong>脾胃消化系統：</strong>缺土導致脾胃功能偏弱，容易消化不良、腹瀉等，飲食要規律，避免生冷刺激</li>
+                        <li><strong>肝膽系統：</strong>缺木容易導致肝氣鬱結，需要保持心情舒暢，避免過度壓力</li>
+                        <li><strong>神經系統：</strong>水火交戰容易導致失眠、焦慮等問題，需要學會放鬆和調節情緒</li>
+                    </ul>
+                    <p><strong>養生建議：</strong>保持規律的作息時間，早睡早起。適度運動，如游泳、瑜伽、太極等柔和的運動。飲食均衡，多吃綠色蔬菜和五穀雜糧。保持心情愉快，多與朋友交流。定期體檢，預防大於治療。</p>
+
+                    <h4 style="color: #667eea; margin-top: 20px; margin-bottom: 10px;">▸ 性格特徵</h4>
+                    <p><strong>優點：</strong></p>
+                    <ul>
+                        <li>聰明靈活，學習能力強，適應力好</li>
+                        <li>善於溝通和表達，人際關係良好</li>
+                        <li>有文化修養和審美情趣，氣質優雅</li>
+                        <li>有理財頭腦，懂得積累財富</li>
+                        <li>有責任心和事業心，上進心強</li>
+                    </ul>
+                    <p><strong>缺點：</strong></p>
+                    <ul>
+                        <li>容易猶豫不決，缺乏果斷性</li>
+                        <li>情緒波動較大，容易焦慮和壓力大</li>
+                        <li>有時過於理想化，不夠實際</li>
+                        <li>缺乏耐心，做事可能虎頭蛇尾</li>
+                        <li>有些敏感多疑，容易想太多</li>
+                    </ul>
+                    <p><strong>性格建議：</strong>培養果斷決策的能力，不要過度糾結。學會情緒管理，保持內心平靜。將理想與現實結合，制定可行的目標。培養耐心和毅力，堅持到底。相信自己，相信他人，減少不必要的擔憂。</p>
+                </div>
+            </div>
+
+            <!-- Section 2: 紫微斗數分析 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">⭐</span>
+                    二、紫微斗數分析
+                </h2>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">2.1 命盤基本結構</h3>
+                    <p>紫微斗數是以出生時辰為基礎，將天上的星宿分佈在十二宮位中，通過分析各宮位的星曜配置，來推斷一個人的命運軌跡。</p>
+
+                    <div class="highlight-box">
+                        <div class="highlight-title">命宮位置與主星</div>
+                        <p><strong>命宮：</strong>您的命宮落在特定地支宮位，這是整個命盤的核心，代表您的先天性格、人生方向和主要運勢。</p>
+                        <p><strong>命宮主星：</strong>命宮中坐守的主星決定了您的核心性格特質。根據您的出生時辰推算，命宮中的主星組合顯示您是一個既有理想又務實的人。</p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">2.2 十二宮位分析</h3>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>宮位</th>
+                                    <th>主星配置</th>
+                                    <th>宮位評級</th>
+                                    <th>重點說明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>命宮</strong></td>
+                                    <td>主星組合</td>
+                                    <td>★★★★☆</td>
+                                    <td>性格穩重，有領導才能，適合管理工作</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>兄弟宮</strong></td>
+                                    <td>吉星拱照</td>
+                                    <td>★★★★☆</td>
+                                    <td>兄弟姐妹關係和睦，能夠互相幫助</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>夫妻宮</strong></td>
+                                    <td>吉凶參半</td>
+                                    <td>★★★☆☆</td>
+                                    <td>婚姻需要經營，但整體和諧，配偶有助力</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>子女宮</strong></td>
+                                    <td>吉星臨宮</td>
+                                    <td>★★★★☆</td>
+                                    <td>子女聰明孝順，親子關係良好</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>財帛宮</strong></td>
+                                    <td>祿存天馬</td>
+                                    <td>★★★★☆</td>
+                                    <td>財運亨通，善於理財，有多元收入</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>疾厄宮</strong></td>
+                                    <td>需防煞星</td>
+                                    <td>★★★☆☆</td>
+                                    <td>需注意呼吸系統和神經系統健康</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>遷移宮</strong></td>
+                                    <td>貴人多助</td>
+                                    <td>★★★★☆</td>
+                                    <td>外出發展運勢佳，容易得到貴人相助</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>奴僕宮（交友宮）</strong></td>
+                                    <td>人緣極佳</td>
+                                    <td>★★★★★</td>
+                                    <td>朋友眾多，人際關係和諧，下屬得力</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>官祿宮（事業宮）</strong></td>
+                                    <td>事業有成</td>
+                                    <td>★★★★☆</td>
+                                    <td>事業發展順利，有晉升機會，適合專業領域</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>田宅宮</strong></td>
+                                    <td>置產有成</td>
+                                    <td>★★★★☆</td>
+                                    <td>不動產運勢佳，可擁有多處房產</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>福德宮</strong></td>
+                                    <td>福祉深厚</td>
+                                    <td>★★★★☆</td>
+                                    <td>精神生活豐富，晚年安樂，享福之命</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>父母宮</strong></td>
+                                    <td>親情融洽</td>
+                                    <td>★★★★☆</td>
+                                    <td>與父母關係良好，能得到長輩的關愛和幫助</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">2.3 四化飛星分析</h3>
+                    <p>四化（祿、權、科、忌）是紫微斗數中動態變化的核心，代表著人生不同階段的運勢起伏和機遇挑戰。</p>
+
+                    <ul>
+                        <li><strong>化祿：</strong>代表財富、機遇、順利。化祿星所在的宮位，該方面的運勢會特別順暢，容易獲得收益。</li>
+                        <li><strong>化權：</strong>代表權力、能力、掌控。化權星所在的宮位，您在該領域會有較強的能力和影響力。</li>
+                        <li><strong>化科：</strong>代表名聲、考試、文化。化科星所在的宮位，該方面會有名望和成就。</li>
+                        <li><strong>化忌：</strong>代表障礙、糾結、損失。化忌星所在的宮位需要特別注意，可能會遇到困難和挫折。</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <div class="highlight-title">本命四化重點</div>
+                        <p>根據您的出生年份，四化飛星的分佈顯示：</p>
+                        <ul>
+                            <li>化祿星入財帛宮或官祿宮，代表您的財運和事業運勢都很不錯，努力就會有回報。</li>
+                            <li>化權星入命宮或夫妻宮，代表您性格較強勢，有領導能力，但在婚姻中需要學會妥協。</li>
+                            <li>化科星入父母宮或福德宮，代表您的教育背景良好，精神層面豐富，有文化修養。</li>
+                            <li>化忌星入疾厄宮或遷移宮，需要注意健康問題和外出時的安全，避免不必要的風險。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">2.4 大限運勢（十年運）</h3>
+                    <p>紫微斗數的大限每十年一換，對應十二宮位的輪轉，每個大限都有不同的主題和重點。</p>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>年齡區間</th>
+                                    <th>大限宮位</th>
+                                    <th>運勢主題</th>
+                                    <th>重點提示</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>4-13歲</td>
+                                    <td>父母宮</td>
+                                    <td>童年教育</td>
+                                    <td>受到良好的家庭教育，與父母關係親密</td>
+                                </tr>
+                                <tr>
+                                    <td>14-23歲</td>
+                                    <td>福德宮</td>
+                                    <td>學習成長</td>
+                                    <td>學業順利，精神生活豐富，建立人生觀</td>
+                                </tr>
+                                <tr>
+                                    <td>24-33歲</td>
+                                    <td>田宅宮</td>
+                                    <td>成家立業</td>
+                                    <td>開始置產，建立家庭，生活穩定</td>
+                                </tr>
+                                <tr style="background: #fff3bf;">
+                                    <td><strong>34-43歲</strong></td>
+                                    <td><strong>官祿宮</strong></td>
+                                    <td><strong>事業高峰</strong></td>
+                                    <td><strong>★ 當前大限：事業發展的黃金期，職位晉升，收入增加</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>44-53歲</td>
+                                    <td>奴僕宮</td>
+                                    <td>人脈資源</td>
+                                    <td>廣結善緣，貴人相助，事業更上一層樓</td>
+                                </tr>
+                                <tr>
+                                    <td>54-63歲</td>
+                                    <td>遷移宮</td>
+                                    <td>開拓視野</td>
+                                    <td>可能有海外發展機會，或從事與外地相關的工作</td>
+                                </tr>
+                                <tr>
+                                    <td>64-73歲</td>
+                                    <td>疾厄宮</td>
+                                    <td>健康養生</td>
+                                    <td>注重身體健康，調整生活方式，養生為主</td>
+                                </tr>
+                                <tr>
+                                    <td>74-83歲</td>
+                                    <td>財帛宮</td>
+                                    <td>安享晚年</td>
+                                    <td>財富充裕，晚年無憂，享受天倫之樂</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">2.5 命格特徵與人生指引</h3>
+
+                    <div class="consensus-box">
+                        <div class="consensus-title">命格總評</div>
+                        <p>根據紫微斗數的綜合分析，您的命格屬於<strong>「福祿雙全，貴人多助」</strong>型格局。這種命格的特點是一生較為順遂，雖然會遇到一些挑戰，但總能逢凶化吉。您天生具有領導才能和人際魅力，適合從事需要與人打交道的工作。財運穩定，中年後尤其旺盛。婚姻和家庭生活和諧，子女孝順。晚年福祿雙全，安享天倫。</p>
+                    </div>
+
+                    <h4 style="color: #667eea; margin-top: 20px; margin-bottom: 10px;">▸ 人生建議</h4>
+                    <ul>
+                        <li><strong>事業方面：</strong>充分發揮您的人際交往能力，多與他人合作。不要害怕承擔責任，勇於挑戰自己。30-40歲是事業發展的關鍵期，要把握機會。</li>
+                        <li><strong>財富方面：</strong>穩健理財，不要貪心冒險。可以適當投資房地產和穩定型基金。建立多元化收入來源，為未來做好準備。</li>
+                        <li><strong>感情方面：</strong>珍惜眼前人，不要對配偶要求過高。多溝通，多理解，多包容。避免因為工作忙碌而忽視家庭。</li>
+                        <li><strong>健康方面：</strong>保持規律的生活作息，適度運動，定期體檢。注意心理健康，學會釋放壓力。</li>
+                        <li><strong>人際方面：</strong>廣結善緣，真誠待人。貴人運旺盛，但也要懂得感恩和回饋。遠離小人，親近君子。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section 3: 西洋占星分析 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">🌟</span>
+                    三、西洋占星分析
+                </h2>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">3.1 星盤基本結構</h3>
+                    <p>西洋占星學通過分析您出生時刻天上星體的位置，來解讀您的性格特質、人生課題和發展潛力。以下是您的星盤基本信息：</p>
+
+                    <div class="highlight-box">
+                        <div class="highlight-title">核心三要素</div>
+                        <p><strong>太陽星座：</strong>代表您的核心自我、生命力和主要性格特質。太陽在特定星座，顯示您的基本人格傾向。</p>
+                        <p><strong>月亮星座：</strong>代表您的情感需求、內在感受和潛意識反應。月亮星座揭示您的情緒模式和安全感來源。</p>
+                        <p><strong>上升星座（命宮）：</strong>代表您的外在形象、處事方式和人生方向。上升星座是他人對您的第一印象。</p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">3.2 十大行星位置分析</h3>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>行星</th>
+                                    <th>所在星座</th>
+                                    <th>所在宮位</th>
+                                    <th>意義解讀</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>太陽 ☉</strong></td>
+                                    <td>白羊座</td>
+                                    <td>第X宮</td>
+                                    <td>充滿活力和開創精神，積極主動，勇於挑戰</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>月亮 ☽</strong></td>
+                                    <td>雙魚座</td>
+                                    <td>第X宮</td>
+                                    <td>情感豐富，富有同情心，直覺敏銳，想像力豐富</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>水星 ☿</strong></td>
+                                    <td>白羊座</td>
+                                    <td>第X宮</td>
+                                    <td>思維敏捷，表達直接，決策迅速，溝通積極</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>金星 ♀</strong></td>
+                                    <td>雙魚座</td>
+                                    <td>第X宮</td>
+                                    <td>浪漫理想，審美獨特，對愛情充滿幻想和憧憬</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>火星 ♂</strong></td>
+                                    <td>雙魚座</td>
+                                    <td>第X宮</td>
+                                    <td>行動力需要情感驅動，有藝術才華，需防過度被動</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>木星 ♃</strong></td>
+                                    <td>天蠍座</td>
+                                    <td>第X宮</td>
+                                    <td>深入探索能力強，對神秘事物感興趣，洞察力強</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>土星 ♄</strong></td>
+                                    <td>雙魚座</td>
+                                    <td>第X宮</td>
+                                    <td>在夢想與現實間掙扎，需要建立實際的目標和計劃</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>天王星 ♅</strong></td>
+                                    <td>摩羯座</td>
+                                    <td>第X宮</td>
+                                    <td>追求穩定中的創新，對傳統體制有獨特見解</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>海王星 ♆</strong></td>
+                                    <td>摩羯座</td>
+                                    <td>第X宮</td>
+                                    <td>對社會責任有理想化的追求，藝術靈感豐富</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>冥王星 ♇</strong></td>
+                                    <td>天蠍座</td>
+                                    <td>第X宮</td>
+                                    <td>深層轉化能力強，對生命奧秘有深刻理解</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">3.3 十二宮位解析</h3>
+                    <p>十二宮位代表人生的十二個主要領域，每個宮位都有其特定的主題和意義。</p>
+
+                    <ul>
+                        <li><strong>第一宮（上升/命宮）：</strong>自我認同、外在形象、人格面具、生命態度</li>
+                        <li><strong>第二宮（財帛宮）：</strong>個人資源、金錢觀念、價值體系、物質安全感</li>
+                        <li><strong>第三宮（兄弟宮）：</strong>溝通表達、學習能力、兄弟姐妹、近距離旅行</li>
+                        <li><strong>第四宮（田宅宮）：</strong>家庭根基、內在安全、房產、與母親的關係</li>
+                        <li><strong>第五宮（子女宮）：</strong>創造力、戀愛、娛樂、子女、投機</li>
+                        <li><strong>第六宮（疾厄宮）：</strong>健康、工作、日常事務、服務他人</li>
+                        <li><strong>第七宮（夫妻宮）：</strong>一對一關係、婚姻、合作、公開的敵人</li>
+                        <li><strong>第八宮（共同資源）：</strong>深層轉化、性、死亡、他人資源、心理</li>
+                        <li><strong>第九宮（遷移宮）：</strong>高等教育、哲學、宗教、長途旅行、異國文化</li>
+                        <li><strong>第十宮（事業宮）：</strong>事業、社會地位、成就、與父親的關係</li>
+                        <li><strong>第十一宮（朋友宮）：</strong>朋友、團體、理想、社會網絡、願景</li>
+                        <li><strong>第十二宮（靈性宮）：</strong>潛意識、靈性、隱秘、慈善、自我犧牲</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <div class="highlight-title">重要宮位配置</div>
+                        <p>根據您的星盤，有多顆行星落在特定宮位，這些宮位將是您人生的重點領域，需要特別關注和發展。行星的配置顯示您在這些領域既有天賦也有挑戰，需要通過不斷學習和成長來發揮潛力。</p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">3.4 主要相位分析</h3>
+                    <p>相位是指行星之間的角度關係，代表不同能量之間的互動模式。主要相位包括：</p>
+
+                    <ul>
+                        <li><strong>合相（0°）：</strong>能量融合，力量強大，可能是祝福也可能是挑戰</li>
+                        <li><strong>六分相（60°）：</strong>和諧相位，帶來機會和支持</li>
+                        <li><strong>四分相（90°）：</strong>緊張相位，帶來挑戰和動力</li>
+                        <li><strong>三分相（120°）：</strong>和諧相位，天賦和才能的來源</li>
+                        <li><strong>對分相（180°）：</strong>對立相位，需要平衡和整合</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <div class="highlight-title">關鍵相位配置</div>
+                        <p>您的星盤中有幾個重要的相位配置：</p>
+                        <ul>
+                            <li>太陽與其他行星形成的相位，影響您的核心自我表達和生命力展現</li>
+                            <li>月亮與其他行星的相位，影響您的情感模式和內在安全感</li>
+                            <li>個人行星（水星、金星、火星）之間的相位，影響您的思維、情感和行動方式</li>
+                            <li>社會行星（木星、土星）的相位，影響您的社會發展和責任承擔</li>
+                            <li>外行星（天王星、海王星、冥王星）的相位，代表您這一代人的集體課題</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">3.5 人生主題與靈性成長</h3>
+
+                    <div class="consensus-box">
+                        <div class="consensus-title">靈魂藍圖</div>
+                        <p>從占星學的角度看，您的星盤揭示了靈魂選擇這一生要學習和體驗的主題。您的太陽、月亮和上升的配置顯示，您此生的核心課題是學習如何平衡理想與現實、情感與理智、自我與他人。</p>
+                    </div>
+
+                    <h4 style="color: #667eea; margin-top: 20px; margin-bottom: 10px;">▸ 人生課題</h4>
+                    <ul>
+                        <li><strong>自我認同：</strong>學習真正認識自己，不被外界評價所左右，建立穩定的自我認同感</li>
+                        <li><strong>情感整合：</strong>整合內在的情感需求和外在的理性思維，達到身心平衡</li>
+                        <li><strong>關係學習：</strong>在親密關係中學習付出與接受、獨立與依賴的平衡</li>
+                        <li><strong>社會貢獻：</strong>找到個人才華與社會需求的結合點，實現自我價值和社會價值的統一</li>
+                        <li><strong>靈性成長：</strong>超越物質層面，探索生命的更深層意義，發展靈性智慧</li>
+                    </ul>
+
+                    <h4 style="color: #667eea; margin-top: 20px; margin-bottom: 10px;">▸ 成長建議</h4>
+                    <p><strong>內在修煉：</strong>通過冥想、瑜伽、藝術創作等方式，深入探索內在世界，增強自我覺察能力。</p>
+                    <p><strong>外在實踐：</strong>將內在的理想和靈感落實到具體行動中，在現實世界中實現自己的願景。</p>
+                    <p><strong>關係療癒：</strong>在親密關係中學習愛與被愛，療癒童年創傷，建立健康的依附模式。</p>
+                    <p><strong>社會服務：</strong>將個人才華用於服務他人和社會，在付出中獲得更深的滿足感。</p>
+                    <p><strong>持續學習：</strong>保持開放和好奇的心態,不斷學習新知識，拓展視野，豐富人生體驗。</p>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Section 4: 跨方法綜合分析 -->
+            <div class="section">
+                <h2 class="section-title">
+                    <span class="section-icon">🔮</span>
+                    四、三大系統綜合解讀
+                </h2>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">4.1 概念映射表</h3>
+                    <p>不同命理系統對相同人生領域有著各自獨特的解讀視角，以下表格展示三大系統如何看待八個主要人生領域：</p>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width: 15%;">生命領域</th>
+                                    <th style="width: 28%;">八字命理</th>
+                                    <th style="width: 28%;">紫微斗數</th>
+                                    <th style="width: 29%;">西洋占星</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>核心性格</strong></td>
+                                    <td>壬水日元：靈活適應，智慧流動</td>
+                                    <td>命宮主星：穩重務實，有領導力</td>
+                                    <td>太陽白羊座：積極開創，熱情主動</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>情感模式</strong></td>
+                                    <td>水火既濟：內心衝突，情感豐富</td>
+                                    <td>夫妻宮：需要經營，整體和諧</td>
+                                    <td>月亮雙魚座：敏感細膩，浪漫理想</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>事業發展</strong></td>
+                                    <td>正印加持：教育背景佳，專業發展</td>
+                                    <td>官祿宮強：事業有成，晉升順利</td>
+                                    <td>第十宮配置：社會地位提升，成就導向</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>財富狀況</strong></td>
+                                    <td>財星明現：穩中有升，理財有道</td>
+                                    <td>財帛宮佳：財運亨通，多元收入</td>
+                                    <td>第二/八宮：物質安全重視，資源管理</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>人際關係</strong></td>
+                                    <td>比肩顯現：重視獨立，朋友眾多</td>
+                                    <td>交友宮旺：人緣極佳，貴人多助</td>
+                                    <td>第七/十一宮：合作關係良好，社交活躍</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>健康狀況</strong></td>
+                                    <td>水火兩旺：注意心血管和腎臟</td>
+                                    <td>疾厄宮：防呼吸系統和神經系統</td>
+                                    <td>第六宮：日常保健重要，壓力管理</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>學習成長</strong></td>
+                                    <td>正印旺：學習能力強，文化修養高</td>
+                                    <td>福德宮：精神豐富，好學上進</td>
+                                    <td>第三/九宮：溝通表達佳，哲學興趣</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>靈性發展</strong></td>
+                                    <td>水性智慧：直覺敏銳，領悟力強</td>
+                                    <td>福德宮深：精神生活豐富，福慧雙修</td>
+                                    <td>第十二宮：靈性追求，潛意識探索</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">4.2 共識性發現（三系統一致認同）</h3>
+
+                    <div class="consensus-box">
+                        <div class="consensus-title">✅ 高度一致的核心特質</div>
+
+                        <h4 style="margin-top: 15px; color: #2b8a3e;">【性格維度】</h4>
+                        <p><strong>智慧靈活型人格</strong></p>
+                        <ul>
+                            <li><strong>八字：</strong>壬水日元代表思維流動靈活，適應能力強</li>
+                            <li><strong>紫微：</strong>命宮配置顯示聰明機智，處事圓融</li>
+                            <li><strong>占星：</strong>水星白羊座反映思維敏捷，學習快速</li>
+                            <li><strong>綜合評估：</strong>您是一個思維敏捷、學習能力強、適應力好的人。無論在什麼環境下都能快速適應並找到自己的位置。這種特質使您在變化多端的現代社會中具有很強的競爭力。</li>
+                        </ul>
+
+                        <p style="margin-top: 15px;"><strong>內在衝突與平衡能力</strong></p>
+                        <ul>
+                            <li><strong>八字：</strong>水火既濟格局，理想與現實需要平衡</li>
+                            <li><strong>紫微：</strong>多顆星曜同宮，能量需要整合</li>
+                            <li><strong>占星：</strong>個人行星形成緊張相位，內在動力強</li>
+                            <li><strong>綜合評估：</strong>您的內心常有矛盾和衝突，但這恰恰是您成長和進步的動力。通過不斷平衡內在的對立力量，您會發展出強大的整合能力和創造力。建議通過冥想、寫作等方式來處理內在衝突，將其轉化為前進的能量。</li>
+                        </ul>
+
+                        <h4 style="margin-top: 20px; color: #2b8a3e;">【事業維度】</h4>
+                        <p><strong>專業領域發展潛力極佳</strong></p>
+                        <ul>
+                            <li><strong>八字：</strong>正印加持，適合需要專業知識的行業</li>
+                            <li><strong>紫微：</strong>官祿宮旺，事業發展順利，有晉升機會</li>
+                            <li><strong>占星：</strong>第十宮配置強，社會成就和地位提升</li>
+                            <li><strong>綜合評估：</strong>三個系統一致認為您有很強的專業發展潛力，特別適合從事教育、文化、法律、金融、諮詢等需要專業知識和判斷力的工作。30-40歲是事業發展的黃金期，40-50歲達到事業巔峰。建議選定一個領域深耕細作，成為該領域的專家。</li>
+                        </ul>
+
+                        <p style="margin-top: 15px;"><strong>30-40歲事業關鍵期</strong></p>
+                        <ul>
+                            <li><strong>八字：</strong>大運進入木運，創造力和執行力增強</li>
+                            <li><strong>紫微：</strong>大限走官祿宮，事業運勢最旺</li>
+                            <li><strong>占星：</strong>行運木星土星相位佳，機遇增加</li>
+                            <li><strong>綜合評估：</strong>30-40歲這十年對您的事業發展至關重要。這段時期您會面臨重要的職業選擇和發展機遇。建議把握這個時期，全力投入事業發展，不要輕易跳槽或改行。在這個階段建立的專業基礎和人脈資源將影響您的整個職業生涯。</li>
+                        </ul>
+
+                        <h4 style="margin-top: 20px; color: #2b8a3e;">【財富維度】</h4>
+                        <p><strong>穩健增長的財運</strong></p>
+                        <ul>
+                            <li><strong>八字：</strong>財星明現，穩中有升，偏財運也不錯</li>
+                            <li><strong>紫微：</strong>財帛宮配置佳，有多元收入來源</li>
+                            <li><strong>占星：</strong>第二宮和第八宮顯示物質安全重視</li>
+                            <li><strong>綜合評估：</strong>您的財運屬於穩健增長型，不會大起大落，但會持續向上。年輕時主要依靠薪資收入，30歲後會有更多的收入來源。40歲後財運大開，財富快速積累。建議採取穩健的理財策略，建立多元化的投資組合，避免高風險投機。</li>
+                        </ul>
+
+                        <h4 style="margin-top: 20px; color: #2b8a3e;">【人際維度】</h4>
+                        <p><strong>貴人運旺盛</strong></p>
+                        <ul>
+                            <li><strong>八字：</strong>比肩和印星顯現，容易得到幫助</li>
+                            <li><strong>紫微：</strong>交友宮和遷移宮旺，貴人多助</li>
+                            <li><strong>占星：</strong>第十一宮配置佳，社交網絡廣闊</li>
+                            <li><strong>綜合評估：</strong>您的貴人運非常旺盛，一生中會遇到很多幫助您的人。這些貴人可能是您的老師、上司、朋友或合作夥伴。建議珍惜每一個貴人，懂得感恩和回饋。同時也要主動拓展人脈，多參加行業活動和社交聚會，您的人際網絡將是您最寶貴的資源。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">4.3 各系統獨特見解</h3>
+
+                    <div class="recommendation-card">
+                        <div class="recommendation-title">☯️ 八字命理的獨特洞察</div>
+                        <p><strong>五行缺木缺土的影響：</strong></p>
+                        <p>八字命理特別指出您五行缺木和缺土，這是其他系統沒有明確指出的重點。缺木會影響您的創造力和仁慈心，缺土會影響您的穩定性和耐性。建議通過以下方式補充：</p>
+                        <ul>
+                            <li>多接觸大自然，特別是樹木和森林（補木）</li>
+                            <li>從事園藝、種植等活動（補木土）</li>
+                            <li>佩戴綠色或黃色飾品（補木土）</li>
+                            <li>在家中東方擺放綠色植物（補木）</li>
+                            <li>在家中中央位置擺放陶瓷、玉石（補土）</li>
+                            <li>培養穩重踏實的性格，做事有始有終（補土）</li>
+                        </ul>
+                        <p><strong>真太陽時的重要性：</strong></p>
+                        <p>八字系統特別強調了真太陽時的校正（調整約0.39分鐘）。雖然時間差異很小，但對於八字排盤的精確性很重要，這顯示了八字命理對天文精確度的重視。</p>
+                    </div>
+
+                    <div class="recommendation-card">
+                        <div class="recommendation-title">⭐ 紫微斗數的獨特視角</div>
+                        <p><strong>宮位輪轉與人生週期：</strong></p>
+                        <p>紫微斗數提供了最清晰的人生階段劃分，通過大限（十年運）的宮位輪轉，可以精確預測不同年齡段的生活重點和運勢變化。這種系統化的人生週期分析是其他系統相對薄弱的地方。</p>
+                        <p><strong>四化飛星的動態分析：</strong></p>
+                        <p>四化（祿、權、科、忌）系統提供了動態的運勢分析工具，可以看出不同時期不同領域的吉凶變化。這種動態分析能力使紫微斗數在預測具體事件方面特別準確。</p>
+                        <p><strong>具體的改運建議：</strong></p>
+                        <ul>
+                            <li>化忌在疾厄宮：特別注意呼吸系統和神經系統的健康保養</li>
+                            <li>化祿在財帛宮：把握30-50歲的財富積累黃金期</li>
+                            <li>化權在命宮：發揮領導才能，但在婚姻中要學會妥協</li>
+                            <li>化科在父母宮：繼續保持學習，提升文化修養</li>
+                        </ul>
+                    </div>
+
+                    <div class="recommendation-card">
+                        <div class="recommendation-title">🌟 西洋占星的心理深度</div>
+                        <p><strong>潛意識與靈性成長：</strong></p>
+                        <p>西洋占星學特別關注潛意識層面和靈性成長，這是東方命理相對較少涉及的領域。通過分析第十二宮和外行星的配置，可以深入了解您的潛意識模式、靈性追求和前世業力。</p>
+                        <p><strong>心理動力分析：</strong></p>
+                        <ul>
+                            <li>月亮雙魚座：強烈的同理心和藝術敏感度，但需要避免過度幻想和逃避現實</li>
+                            <li>土星雙魚座：在夢想與現實之間的掙扎，需要建立實際可行的目標</li>
+                            <li>火星雙魚座：行動力需要情感驅動，建議找到內在的熱情所在</li>
+                        </ul>
+                        <p><strong>關係模式深度解析：</strong></p>
+                        <p>第七宮和金星的配置揭示了您在親密關係中的深層需求和模式。您傾向於理想化伴侶，需要學習接受對方的不完美，建立更實際和成熟的關係模式。建議通過心理諮詢或關係工作坊來提升親密關係能力。</p>
+                        <p><strong>世代課題：</strong></p>
+                        <p>外行星（天王星、海王星、冥王星）的配置顯示您這一代人（1990年代出生）的集體課題是平衡傳統與創新、物質與精神、個人與集體。這些宏觀的社會變遷也會影響您的個人發展路徑。</p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">4.4 人生八大領域綜合評分</h3>
+                    <p>基於三大系統的綜合分析，對您人生八大領域進行評分（滿分100分）：</p>
+
+                    <div style="margin: 30px 0;">
+                        <div class="score-bar">
+                            <div class="score-label">🎯 事業發展</div>
+                            <div class="score-progress">
+                                <div class="score-fill" style="width: 85%;">85分</div>
+                            </div>
+                        </div>
+                        <p style="margin-left: 130px; color: #666; font-size: 0.9em;">專業潛力極佳，30-40歲關鍵期把握好將事業有成</p>
+
+                        <div class="score-bar">
+                            <div class="score-label">💰 財富累積</div>
+                            <div class="score-progress">
+                                <div class="score-fill" style="width: 80%;">80分</div>
+                            </div>
+                        </div>
+                        <p style="margin-left: 130px; color: #666; font-size: 0.9em;">穩健增長型財運，40歲後財富快速積累</p>
+
+                        <div class="score-bar">
+                            <div class="score-label">❤️ 感情婚姻</div>
+                            <div class="score-progress">
+                                <div class="score-fill" style="width: 75%;">75分</div>
+                            </div>
+                        </div>
+                        <p style="margin-left: 130px; color: #666; font-size: 0.9em;">整體和諧，但需要經營，理想結婚年齡28-32歲</p>
+
+                        <div class="score-bar">
+                            <div class="score-label">💪 健康狀況</div>
+                            <div class="score-progress">
+                                <div class="score-fill" style="width: 70%;">70分</div>
+                            </div>
+                        </div>
+                        <p style="margin-left: 130px; color: #666; font-size: 0.9em;">體質中等偏上，需注意心血管和消化系統</p>
+
+                        <div class="score-bar">
+                            <div class="score-label">👥 人際關係</div>
+                            <div class="score-progress">
+                                <div class="score-fill" style="width: 90%;">90分</div>
+                            </div>
+                        </div>
+                        <p style="margin-left: 130px; color: #666; font-size: 0.9em;">貴人運旺盛，人緣極佳，社交能力強</p>
+
+                        <div class="score-bar">
+                            <div class="score-label">📚 學習成長</div>
+                            <div class="score-progress">
+                                <div class="score-fill" style="width: 88%;">88分</div>
+                            </div>
+                        </div>
+                        <p style="margin-left: 130px; color: #666; font-size: 0.9em;">學習能力強，文化修養高，適合終身學習</p>
+
+                        <div class="score-bar">
+                            <div class="score-label">👨‍👩‍👧 家庭生活</div>
+                            <div class="score-progress">
+                                <div class="score-fill" style="width: 82%;">82分</div>
+                            </div>
+                        </div>
+                        <p style="margin-left: 130px; color: #666; font-size: 0.9em;">家庭和睦，子女運佳，晚年享福</p>
+
+                        <div class="score-bar">
+                            <div class="score-label">🌟 靈性發展</div>
+                            <div class="score-progress">
+                                <div class="score-fill" style="width: 78%;">78分</div>
+                            </div>
+                        </div>
+                        <p style="margin-left: 130px; color: #666; font-size: 0.9em;">直覺敏銳，精神生活豐富，有靈性追求</p>
+                    </div>
+
+                    <div class="highlight-box" style="margin-top: 30px;">
+                        <div class="highlight-title">綜合評級：優秀（A級）</div>
+                        <p>您的整體命盤屬於優質配置，八大領域平均分達到81分。特別在人際關係、學習成長和事業發展三個領域表現突出。相對薄弱的健康領域也在中上水平，只要注意保養就不會有大問題。</p>
+                        <p><strong>最大優勢：</strong>智慧靈活 + 貴人運旺 + 學習力強 + 事業潛力大</p>
+                        <p><strong>需要注意：</strong>健康保養 + 情緒管理 + 五行平衡 + 目標堅持</p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">4.5 實踐行動計劃（2024-2025）</h3>
+
+                    <div class="consensus-box">
+                        <div class="consensus-title">近期重點（未來兩年）</div>
+                        <p>綜合三大系統的分析，以下是您2024-2025年的重點行動計劃：</p>
+                    </div>
+
+                    <h4 style="color: #667eea; margin-top: 20px; margin-bottom: 10px;">▸ 第一季度（2024年1-3月）</h4>
+                    <ul>
+                        <li><strong>事業：</strong>評估當前職業發展方向，制定3-5年職業規劃。如果考慮跳槽或晉升，這是準備的好時機。</li>
+                        <li><strong>學習：</strong>報名一門專業課程或考取相關證照，提升專業競爭力。</li>
+                        <li><strong>健康：</strong>建立規律的運動習慣，每週至少3次，每次30分鐘以上。進行一次全面體檢。</li>
+                        <li><strong>理財：</strong>檢視財務狀況，制定年度儲蓄和投資計劃。</li>
+                    </ul>
+
+                    <h4 style="color: #667eea; margin-top: 20px; margin-bottom: 10px;">▸ 第二季度（2024年4-6月）</h4>
+                    <ul>
+                        <li><strong>事業：</strong>積極爭取新的專案或職責，展現自己的能力。多與上司溝通，表達晉升意願。</li>
+                        <li><strong>人際：</strong>主動拓展人脈，參加行業活動或社交聚會，每月至少2次。</li>
+                        <li><strong>感情：</strong>單身者可以通過朋友介紹或社交活動認識新對象。已婚者安排一次浪漫旅行，增進感情。</li>
+                        <li><strong>五行：</strong>開始補木補土的實踐，如種植綠色植物、佩戴相應飾品。</li>
+                    </ul>
+
+                    <h4 style="color: #667eea; margin-top: 20px; margin-bottom: 10px;">▸ 第三季度（2024年7-9月）</h4>
+                    <ul>
+                        <li><strong>事業：</strong>如果有好的機會，可以考慮跳槽或創業。但要謹慎評估風險。</li>
+                        <li><strong>財富：</strong>考慮穩健型投資，如基金定投或房地產。避免高風險投機。</li>
+                        <li><strong>學習：</strong>參加一個工作坊或研討會，學習新技能或拓展視野。</li>
+                        <li><strong>健康：</strong>夏季注意防暑降溫，多喝水，避免中暑。繼續保持運動習慣。</li>
+                    </ul>
+
+                    <h4 style="color: #667eea; margin-top: 20px; margin-bottom: 10px;">▸ 第四季度（2024年10-12月）</h4>
+                    <ul>
+                        <li><strong>事業：</strong>總結全年工作成果，準備年終評估。制定明年的目標和計劃。</li>
+                        <li><strong>感情：</strong>單身者在年底前有較好的桃花運，可能遇到心儀對象。</li>
+                        <li><strong>家庭：</strong>與家人共度佳節，增進親情。如果有購房計劃，可以開始看房。</li>
+                        <li><strong>財富：</strong>年底進行財務總結，檢視投資回報，調整明年的理財策略。</li>
+                    </ul>
+
+                    <h4 style="color: #667eea; margin-top: 20px; margin-bottom: 10px;">▸ 2025年全年重點</h4>
+                    <ul>
+                        <li><strong>事業：</strong>這是充滿機遇的一年，可能有重大突破。要抓住機會，勇於挑戰。</li>
+                        <li><strong>財富：</strong>財運極佳，投資運勢旺盛。但要保持理性，不要過度貪心。</li>
+                        <li><strong>感情：</strong>感情生活熱情高漲，單身者有望脫單，已婚者感情升溫。但要避免衝動決定。</li>
+                        <li><strong>健康：</strong>精力充沛，但也要注意休息，避免過度勞累。定期體檢很重要。</li>
+                        <li><strong>學習：</strong>可以考慮攻讀更高學位或深造，提升專業高度。</li>
+                    </ul>
+                </div>
+
+                <div class="subsection">
+                    <h3 class="subsection-title">4.6 終生建議與智慧箴言</h3>
+
+                    <div class="consensus-box">
+                        <div class="consensus-title">三大系統的共同智慧</div>
+
+                        <p style="font-size: 1.1em; font-weight: 600; margin-bottom: 15px;">「智慧如水，德行如土；理想似火，實踐為金。四者平衡，人生圓滿。」</p>
+
+                        <p><strong>從八字命理的角度：</strong></p>
+                        <p>您的五行配置提示我們，人生需要平衡各種元素。水的靈活、火的熱情固然重要，但也不能缺少木的創造力和土的穩定性。生命不僅需要智慧和激情，更需要仁慈和踏實。建議您在追求理想的同時，也要腳踏實地；在發展事業的同時，也要培養內在品德。</p>
+
+                        <p><strong>從紫微斗數的角度：</strong></p>
+                        <p>您的命盤顯示，人生是一個週期性的發展過程。每個階段都有其主題和課題，沒有永遠的順境，也沒有永遠的逆境。重要的是在順境中不驕傲，在逆境中不氣餒，始終保持進取之心。您的貴人運旺盛，但也要記得，幫助他人就是幫助自己，廣結善緣才能福報綿延。</p>
+
+                        <p><strong>從西洋占星的角度：</strong></p>
+                        <p>您的星盤揭示，靈魂選擇這一生來學習如何整合內在的對立面，實現身心靈的和諧統一。外在的成就固然重要，但內在的成長和覺醒才是生命的真正目的。建議您在追求物質成功的同時，也要關注精神層面的發展，探索生命的更深層意義。</p>
+                    </div>
+
+                    <div class="highlight-box" style="margin-top: 25px;">
+                        <div class="highlight-title">給您的人生箴言</div>
+                        <ol style="margin-left: 20px;">
+                            <li><strong>智慧與行動並重：</strong>您有很好的頭腦，但光想不做是沒用的。要將想法付諸實踐，才能看到成果。</li>
+                            <li><strong>理想與現實平衡：</strong>有理想是好事，但也要接受現實的限制。在理想與現實之間找到平衡點。</li>
+                            <li><strong>獨立與合作兼顧：</strong>您性格獨立，但人生路上離不開他人的幫助。學會合作，懂得感恩。</li>
+                            <li><strong>事業與家庭兼顧：</strong>不要為了事業而犧牲家庭，也不要為了家庭而放棄事業。兩者要平衡發展。</li>
+                            <li><strong>身心健康優先：</strong>沒有健康，一切都是空談。要重視身體和心理的健康，定期保養。</li>
+                            <li><strong>持續學習成長：</strong>學習是終身的事業。保持開放和好奇的心態，不斷充實自己。</li>
+                            <li><strong>善待他人自己：</strong>對他人仁慈，對自己也要仁慈。接受自己的不完美，也接受他人的不完美。</li>
+                            <li><strong>活在當下珍惜：</strong>不要過度糾結過去，也不要過度擔憂未來。活在當下，珍惜眼前的幸福。</li>
+                        </ol>
+                    </div>
+
+                    <div style="margin-top: 30px; padding: 25px; background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%); border-radius: 12px; text-align: center;">
+                        <p style="font-size: 1.3em; font-weight: 600; color: #5f3dc4; margin-bottom: 10px;">願您：</p>
+                        <p style="font-size: 1.1em; line-height: 2; color: #364fc7;">
+                            事業順遂，財源廣進<br>
+                            身體健康，家庭和睦<br>
+                            貴人相助，心想事成<br>
+                            智慧增長，靈性提升<br>
+                            一生平安，福壽康寧
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>報告生成時間：</strong>2025-10-26</p>
+            <p><strong>分析系統：</strong>八字命理 × 紫微斗數 × 西洋占星</p>
+            <p><strong>聲明：</strong>本報告僅供參考，命運掌握在自己手中</p>
+            <p style="margin-top: 15px; opacity: 0.7;">🔮 願此報告為您的人生旅程帶來啟發與指引 🔮</p>
+        </div>
+    </div>
+</body>
+</html>

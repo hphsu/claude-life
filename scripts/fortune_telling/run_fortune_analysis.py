@@ -20,6 +20,11 @@ from fortune_telling.calendar_converter import CalendarConverter
 from fortune_telling.bazi_calculator import BaziCalculator
 from fortune_telling.ziwei_calculator import ZiweiCalculator
 from fortune_telling.astrology_calculator import AstrologyCalculator
+from fortune_telling.name_analysis_calculator import NameAnalysisCalculator
+from fortune_telling.plum_blossom_calculator import PlumBlossomCalculator
+from fortune_telling.numerology_calculator import NumerologyCalculator
+from fortune_telling.qimen_calculator import QimenCalculator
+from fortune_telling.liuyao_calculator import LiuyaoCalculator
 from fortune_telling.progress_tracker import init_tracker
 
 
@@ -37,6 +42,10 @@ def parse_arguments():
     parser.add_argument('gender', choices=['male', 'female'], help='性別 (male 或 female)')
     parser.add_argument('--true-solar-time', action='store_true',
                        help='是否使用真太陽時修正 (預設: 否)')
+    parser.add_argument('--methods', nargs='+',
+                       choices=['bazi', 'ziwei', 'astrology', 'name', 'plum', 'numerology', 'qimen', 'liuyao', 'all'],
+                       default=['all'],
+                       help='選擇要執行的分析方法 (預設: all)')
 
     return parser.parse_args()
 
@@ -121,6 +130,11 @@ def main():
     tracker.add_stage('bazi', '執行八字分析', '📚')
     tracker.add_stage('ziwei', '執行紫微斗數分析', '🌟')
     tracker.add_stage('astrology', '執行西洋占星分析', '⭐')
+    tracker.add_stage('name', '執行姓名學分析', '✍️')
+    tracker.add_stage('plum', '執行梅花易數分析', '🌸')
+    tracker.add_stage('numerology', '執行生命靈數分析', '🔢')
+    tracker.add_stage('qimen', '執行奇門遁甲分析', '🧭')
+    tracker.add_stage('liuyao', '執行六爻占卜分析', '🎲')
     tracker.add_stage('assemble', '組裝分析結果', '📝')
     tracker.add_stage('save', '儲存計算結果', '💾')
 
@@ -135,6 +149,22 @@ def main():
     gender = convert_gender(args.gender)
     use_true_solar_time = args.true_solar_time
 
+    # 確定要執行的方法
+    methods = args.methods
+    if 'all' in methods:
+        methods = ['bazi', 'ziwei', 'astrology', 'name', 'plum', 'numerology', 'qimen', 'liuyao']
+
+    methods_cn = {
+        'bazi': '八字',
+        'ziwei': '紫微斗數',
+        'astrology': '占星',
+        'name': '姓名學',
+        'plum': '梅花易數',
+        'numerology': '生命靈數',
+        'qimen': '奇門遁甲',
+        'liuyao': '六爻'
+    }
+
     print("=" * 80)
     print("🔮 綜合命理分析系統")
     print("=" * 80)
@@ -144,6 +174,7 @@ def main():
     print(f"   地點：{location}")
     print(f"   性別：{gender}")
     print(f"   真太陽時修正：{'是' if use_true_solar_time else '否'}")
+    print(f"   分析方法：{', '.join([methods_cn[m] for m in methods])}")
 
     tracker.complete_stage('parse')
 
@@ -201,60 +232,143 @@ def main():
         return None
 
     # ========================================
-    # 階段 2：執行三個分析引擎
+    # 階段 2：執行各類命理分析
     # ========================================
     print("\n" + "=" * 80)
-    print("🔬 階段 2：執行三大命理分析")
+    print(f"🔬 階段 2：執行命理分析（{len(methods)}種方法）")
     print("=" * 80)
 
     # 2.1 八字分析
-    tracker.start_stage('bazi')
-    print("\n📚 正在執行八字分析...")
-    try:
-        bazi_calc = BaziCalculator(calendar_data=calendar_data)
-        bazi_result = bazi_calc.analyze(gender=gender, include_luck_pillars=True)
-        print("✅ 八字分析完成")
-        tracker.complete_stage('bazi')
-    except Exception as e:
-        print(f"❌ 八字分析失敗：{str(e)}")
-        tracker.fail_stage('bazi', str(e))
-        import traceback
-        traceback.print_exc()
-        bazi_result = None
+    bazi_result = None
+    if 'bazi' in methods:
+        tracker.start_stage('bazi')
+        print("\n📚 正在執行八字分析...")
+        try:
+            bazi_calc = BaziCalculator(calendar_data=calendar_data)
+            bazi_result = bazi_calc.analyze(gender=gender, include_luck_pillars=True)
+            print("✅ 八字分析完成")
+            tracker.complete_stage('bazi')
+        except Exception as e:
+            print(f"❌ 八字分析失敗：{str(e)}")
+            tracker.fail_stage('bazi', str(e))
+            import traceback
+            traceback.print_exc()
 
     # 2.2 紫微斗數分析
-    tracker.start_stage('ziwei')
-    print("\n🌟 正在執行紫微斗數分析...")
-    try:
-        ziwei_calc = ZiweiCalculator(calendar_data=calendar_data, gender=gender)
-        ziwei_result = ziwei_calc.analyze()
-        print("✅ 紫微斗數分析完成")
-        tracker.complete_stage('ziwei')
-    except Exception as e:
-        print(f"❌ 紫微斗數分析失敗：{str(e)}")
-        tracker.fail_stage('ziwei', str(e))
-        import traceback
-        traceback.print_exc()
-        ziwei_result = None
+    ziwei_result = None
+    if 'ziwei' in methods:
+        tracker.start_stage('ziwei')
+        print("\n🌟 正在執行紫微斗數分析...")
+        try:
+            ziwei_calc = ZiweiCalculator(calendar_data=calendar_data, gender=gender)
+            ziwei_result = ziwei_calc.analyze()
+            print("✅ 紫微斗數分析完成")
+            tracker.complete_stage('ziwei')
+        except Exception as e:
+            print(f"❌ 紫微斗數分析失敗：{str(e)}")
+            tracker.fail_stage('ziwei', str(e))
+            import traceback
+            traceback.print_exc()
 
     # 2.3 占星分析
-    tracker.start_stage('astrology')
-    print("\n⭐ 正在執行西洋占星分析...")
-    try:
-        astrology_calc = AstrologyCalculator(
-            birth_datetime=birth_dt,
-            latitude=city_info['lat'],
-            longitude=city_info['lon']
-        )
-        astrology_result = astrology_calc.analyze()
-        print("✅ 西洋占星分析完成")
-        tracker.complete_stage('astrology')
-    except Exception as e:
-        print(f"❌ 西洋占星分析失敗：{str(e)}")
-        tracker.fail_stage('astrology', str(e))
-        import traceback
-        traceback.print_exc()
-        astrology_result = None
+    astrology_result = None
+    if 'astrology' in methods:
+        tracker.start_stage('astrology')
+        print("\n⭐ 正在執行西洋占星分析...")
+        try:
+            astrology_calc = AstrologyCalculator(
+                birth_datetime=birth_dt,
+                latitude=city_info['lat'],
+                longitude=city_info['lon']
+            )
+            astrology_result = astrology_calc.analyze()
+            print("✅ 西洋占星分析完成")
+            tracker.complete_stage('astrology')
+        except Exception as e:
+            print(f"❌ 西洋占星分析失敗：{str(e)}")
+            tracker.fail_stage('astrology', str(e))
+            import traceback
+            traceback.print_exc()
+
+    # 2.4 姓名學分析
+    name_result = None
+    if 'name' in methods:
+        tracker.start_stage('name')
+        print("\n✍️ 正在執行姓名學分析...")
+        try:
+            name_calc = NameAnalysisCalculator(name=name, gender=gender)
+            name_result = name_calc.analyze()
+            print("✅ 姓名學分析完成")
+            tracker.complete_stage('name')
+        except Exception as e:
+            print(f"❌ 姓名學分析失敗：{str(e)}")
+            tracker.fail_stage('name', str(e))
+            import traceback
+            traceback.print_exc()
+
+    # 2.5 梅花易數分析
+    plum_result = None
+    if 'plum' in methods:
+        tracker.start_stage('plum')
+        print("\n🌸 正在執行梅花易數分析...")
+        try:
+            plum_calc = PlumBlossomCalculator(birth_datetime=birth_dt, method="time")
+            plum_result = plum_calc.analyze()
+            print("✅ 梅花易數分析完成")
+            tracker.complete_stage('plum')
+        except Exception as e:
+            print(f"❌ 梅花易數分析失敗：{str(e)}")
+            tracker.fail_stage('plum', str(e))
+            import traceback
+            traceback.print_exc()
+
+    # 2.6 生命靈數分析
+    numerology_result = None
+    if 'numerology' in methods:
+        tracker.start_stage('numerology')
+        print("\n🔢 正在執行生命靈數分析...")
+        try:
+            numerology_calc = NumerologyCalculator(birth_date=birth_dt, full_name=name)
+            numerology_result = numerology_calc.analyze()
+            print("✅ 生命靈數分析完成")
+            tracker.complete_stage('numerology')
+        except Exception as e:
+            print(f"❌ 生命靈數分析失敗：{str(e)}")
+            tracker.fail_stage('numerology', str(e))
+            import traceback
+            traceback.print_exc()
+
+    # 2.7 奇門遁甲分析
+    qimen_result = None
+    if 'qimen' in methods:
+        tracker.start_stage('qimen')
+        print("\n🧭 正在執行奇門遁甲分析...")
+        try:
+            qimen_calc = QimenCalculator(divination_time=birth_dt, method="時家奇門")
+            qimen_result = qimen_calc.analyze()
+            print("✅ 奇門遁甲分析完成")
+            tracker.complete_stage('qimen')
+        except Exception as e:
+            print(f"❌ 奇門遁甲分析失敗：{str(e)}")
+            tracker.fail_stage('qimen', str(e))
+            import traceback
+            traceback.print_exc()
+
+    # 2.8 六爻占卜分析
+    liuyao_result = None
+    if 'liuyao' in methods:
+        tracker.start_stage('liuyao')
+        print("\n🎲 正在執行六爻占卜分析...")
+        try:
+            liuyao_calc = LiuyaoCalculator(divination_time=birth_dt, method="時間起卦")
+            liuyao_result = liuyao_calc.analyze()
+            print("✅ 六爻占卜分析完成")
+            tracker.complete_stage('liuyao')
+        except Exception as e:
+            print(f"❌ 六爻占卜分析失敗：{str(e)}")
+            tracker.fail_stage('liuyao', str(e))
+            import traceback
+            traceback.print_exc()
 
     # ========================================
     # 階段 3：組裝完整結果 (不包含深度解釋和綜合分析)
@@ -274,19 +388,29 @@ def main():
             "birth_lunar": f"{calendar_data['lunar']['year']}年{calendar_data['lunar']['month']}月{calendar_data['lunar']['day']}日",
             "location": location,
             "gender": gender,
-            "true_solar_time": use_true_solar_time
+            "true_solar_time": use_true_solar_time,
+            "methods": methods
         },
-        "calendar_data": calendar_data,
-        "bazi": {
-            "calculation": bazi_result
-        },
-        "ziwei": {
-            "calculation": ziwei_result
-        },
-        "astrology": {
-            "calculation": astrology_result
-        }
+        "calendar_data": calendar_data
     }
+
+    # 根據方法添加結果
+    if bazi_result:
+        full_report["bazi"] = {"calculation": bazi_result}
+    if ziwei_result:
+        full_report["ziwei"] = {"calculation": ziwei_result}
+    if astrology_result:
+        full_report["astrology"] = {"calculation": astrology_result}
+    if name_result:
+        full_report["name_analysis"] = {"calculation": name_result}
+    if plum_result:
+        full_report["plum_blossom"] = {"calculation": plum_result}
+    if numerology_result:
+        full_report["numerology"] = {"calculation": numerology_result}
+    if qimen_result:
+        full_report["qimen"] = {"calculation": qimen_result}
+    if liuyao_result:
+        full_report["liuyao"] = {"calculation": liuyao_result}
 
     tracker.complete_stage('assemble')
 

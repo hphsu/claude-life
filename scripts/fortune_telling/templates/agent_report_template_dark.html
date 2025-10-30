@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>綜合命理分析報告 - {{NAME}}</title>
+    <style>
+        :root {
+            --color-bazi: #D2691E;
+            --color-ziwei: #BA55D3;
+            --color-astrology: #4682B4;
+            --color-synthesis: #3CB371;
+            --color-bg: #000000;
+            --color-card: #1a1a1a;
+            --color-text: #e0e0e0;
+            --color-text-muted: #999999;
+            --color-border: #333333;
+            --color-header-bg: #0a0a0a;
+            --shadow-sm: 0 0.125rem 0.25rem rgba(0,0,0,0.5);
+            --shadow-md: 0 0.5rem 1rem rgba(0,0,0,0.6);
+            --shadow-lg: 0 1rem 3rem rgba(0,0,0,0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "PingFang TC", "Microsoft JhengHei", "Microsoft YaHei", "Noto Sans CJK TC", "Source Han Sans TC", sans-serif;
+            line-height: 1.8;
+            color: var(--color-text);
+            background: var(--color-bg);
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--color-card);
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2d3561 0%, #3d2f5b 100%);
+            color: white;
+            padding: 3rem 2rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .metadata {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .metadata-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .metadata-item .icon {
+            font-size: 1.3rem;
+        }
+
+        /* Quick Navigation / Table of Contents */
+        .quick-nav {
+            background: var(--color-header-bg);
+            padding: 2rem;
+            border-bottom: 2px solid var(--color-border);
+        }
+
+        .quick-nav h2 {
+            color: var(--color-synthesis);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .quick-nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .quick-nav-item {
+            background: var(--color-card);
+            border: 2px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: var(--color-text);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .quick-nav-item:hover {
+            border-color: var(--color-synthesis);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .quick-nav-item .icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .quick-nav-item.synthesis .icon { color: var(--color-synthesis); }
+        .quick-nav-item.bazi .icon { color: var(--color-bazi); }
+        .quick-nav-item.ziwei .icon { color: var(--color-ziwei); }
+        .quick-nav-item.astrology .icon { color: var(--color-astrology); }
+
+        .quick-nav-item .text {
+            flex: 1;
+        }
+
+        .quick-nav-item .title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .quick-nav-item .desc {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+
+        .nav {
+            background: var(--color-header-bg);
+            padding: 1.5rem 2rem;
+            border-bottom: 3px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .nav-links a:hover {
+            background: rgba(102, 126, 234, 0.2);
+            border-color: var(--color-synthesis);
+            color: var(--color-synthesis);
+        }
+
+        .content {
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border-radius: 12px;
+            background: var(--color-card);
+            border-left: 5px solid;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-border);
+        }
+
+        .section.bazi {
+            border-left-color: var(--color-bazi);
+        }
+
+        .section.ziwei {
+            border-left-color: var(--color-ziwei);
+        }
+
+        .section.astrology {
+            border-left-color: var(--color-astrology);
+        }
+
+        .section.synthesis {
+            border-left-color: var(--color-synthesis);
+            background: linear-gradient(to bottom, #0d1a0d, #1a1a1a);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--color-border);
+            cursor: pointer;
+            user-select: none;
+            transition: opacity 0.2s;
+        }
+
+        .section-header:hover {
+            opacity: 0.8;
+        }
+
+        .collapse-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            transition: transform 0.3s ease;
+        }
+
+        .collapse-toggle .icon {
+            font-size: 1.5rem;
+        }
+
+        .section.collapsed .collapse-toggle {
+            transform: rotate(-90deg);
+        }
+
+        .section-content {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: var(--color-text);
+            max-height: 10000px;
+            overflow: hidden;
+            transition: max-height 0.5s ease, opacity 0.3s ease;
+        }
+
+        .section.collapsed .section-content {
+            max-height: 0;
+            opacity: 0;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .section-icon {
+            font-size: 2.5rem;
+        }
+
+        .section.bazi .section-icon {
+            color: var(--color-bazi);
+        }
+
+        .section.ziwei .section-icon {
+            color: var(--color-ziwei);
+        }
+
+        .section.astrology .section-icon {
+            color: var(--color-astrology);
+        }
+
+        .section.synthesis .section-icon {
+            color: var(--color-synthesis);
+        }
+
+        .confidence-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: #2a2a2a;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+
+        .confidence-badge.high {
+            background: #1a3a1a;
+            color: #4ade80;
+            border-color: #2d5a2d;
+        }
+
+        .confidence-badge.medium {
+            background: #3a321a;
+            color: #fbbf24;
+            border-color: #5a4d2d;
+        }
+
+        .confidence-badge.low {
+            background: #3a1a1a;
+            color: #f87171;
+            border-color: #5a2d2d;
+        }
+
+        .section-content {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: var(--color-text);
+        }
+
+        .section-content h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--color-text);
+        }
+
+        .section-content h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--color-text);
+        }
+
+        .section-content h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 1.2rem;
+            margin-bottom: 0.6rem;
+            color: var(--color-text-muted);
+        }
+
+        .section-content p {
+            margin-bottom: 1rem;
+        }
+
+        .section-content ul,
+        .section-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .section-content strong {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .section-content em {
+            font-style: italic;
+            color: var(--color-text-muted);
+        }
+
+        .section-content blockquote {
+            border-left: 4px solid var(--color-border);
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: var(--color-text-muted);
+        }
+
+        .section-content code {
+            background: #0a0a0a;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: "Consolas", "Monaco", monospace;
+            font-size: 0.95em;
+            color: #4ade80;
+        }
+
+        .section-content pre {
+            background: #0a0a0a;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid var(--color-border);
+        }
+
+        .section-content pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .section-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .section-content th,
+        .section-content td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .section-content th {
+            background: #0a0a0a;
+            font-weight: 600;
+        }
+
+        .section-content a {
+            color: var(--color-astrology);
+            text-decoration: none;
+        }
+
+        .section-content a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            background: var(--color-header-bg);
+            padding: 2rem;
+            text-align: center;
+            color: var(--color-text-muted);
+            border-top: 3px solid var(--color-border);
+        }
+
+        .footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer .timestamp {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+
+        /* Collapse/Expand buttons */
+        button {
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            background: #3a3a3a !important;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--color-synthesis);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 1rem 2rem rgba(60, 179, 113, 0.4);
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            .nav, .quick-nav, .scroll-top {
+                display: none;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            .header {
+                background: #2d3561;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+
+            .header {
+                padding: 2rem 1rem;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .metadata {
+                gap: 1rem;
+                font-size: 1rem;
+            }
+
+            .quick-nav {
+                padding: 1.5rem 1rem;
+            }
+
+            .quick-nav h2 {
+                font-size: 1.5rem;
+            }
+
+            .quick-nav-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .content {
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .section-icon {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                gap: 0.5rem;
+            }
+
+            .nav-links a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>綜合命理分析報告</h1>
+            <div class="metadata">
+                <div class="metadata-item">
+                    <span class="icon">👤</span>
+                    <span>{{NAME}}</span>
+                </div>
+                <div class="metadata-item">
+                    <span class="icon">📅</span>
+                    <span>{{BIRTH_DATE}}</span>
+                </div>
+                <div class="metadata-item">
+                    <span class="icon">⏰</span>
+                    <span>{{BIRTH_TIME}}</span>
+                </div>
+                <div class="metadata-item">
+                    <span class="icon">📍</span>
+                    <span>{{LOCATION}}</span>
+                </div>
+                <div class="metadata-item">
+                    <span class="icon">⚧</span>
+                    <span>{{GENDER}}</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Quick Navigation / Table of Contents -->
+        <div class="quick-nav">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h2 style="margin: 0;">📋 快速導航 Quick Navigation</h2>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button onclick="expandAll()" style="padding: 0.5rem 1rem; background: #2a2a2a; color: var(--color-text); border: 1px solid var(--color-border); border-radius: 8px; cursor: pointer; font-size: 0.9rem; transition: background 0.2s;">
+                        📖 展開全部
+                    </button>
+                    <button onclick="collapseAll()" style="padding: 0.5rem 1rem; background: #2a2a2a; color: var(--color-text); border: 1px solid var(--color-border); border-radius: 8px; cursor: pointer; font-size: 0.9rem; transition: background 0.2s;">
+                        📕 收合全部
+                    </button>
+                </div>
+            </div>
+            <div class="quick-nav-grid">
+                <a href="#synthesis" class="quick-nav-item synthesis">
+                    <span class="icon">🧩</span>
+                    <div class="text">
+                        <div class="title">綜合分析</div>
+                        <div class="desc">三方法整合洞察</div>
+                    </div>
+                </a>
+                <a href="#bazi" class="quick-nav-item bazi">
+                    <span class="icon">📿</span>
+                    <div class="text">
+                        <div class="title">八字命理</div>
+                        <div class="desc">四柱深度解析</div>
+                    </div>
+                </a>
+                <a href="#ziwei" class="quick-nav-item ziwei">
+                    <span class="icon">⭐</span>
+                    <div class="text">
+                        <div class="title">紫微斗數</div>
+                        <div class="desc">十二宮位分析</div>
+                    </div>
+                </a>
+                <a href="#astrology" class="quick-nav-item astrology">
+                    <span class="icon">🌟</span>
+                    <div class="text">
+                        <div class="title">心理占星</div>
+                        <div class="desc">星盤心理解讀</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <nav class="nav">
+            <ul class="nav-links">
+                <li><a href="#synthesis">🧩 綜合分析</a></li>
+                <li><a href="#bazi">📿 八字命理</a></li>
+                <li><a href="#ziwei">⭐ 紫微斗數</a></li>
+                <li><a href="#astrology">🌟 心理占星</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <section id="synthesis" class="section synthesis">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <span class="section-icon">🧩</span>
+                        <span>三方法綜合分析</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div class="confidence-badge high">
+                            <span>✨</span>
+                            <span>跨方法驗證</span>
+                        </div>
+                        <div class="collapse-toggle">
+                            <span class="icon">▼</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-content">
+                    {{SYNTHESIS_CONTENT}}
+                </div>
+            </section>
+
+            <section id="bazi" class="section bazi">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <span class="section-icon">📿</span>
+                        <span>八字命理分析</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div class="confidence-badge high">
+                            <span>🔮</span>
+                            <span>四柱命盤</span>
+                        </div>
+                        <div class="collapse-toggle">
+                            <span class="icon">▼</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-content">
+                    {{BAZI_CONTENT}}
+                </div>
+            </section>
+
+            <section id="ziwei" class="section ziwei">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <span class="section-icon">⭐</span>
+                        <span>紫微斗數分析</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div class="confidence-badge high">
+                            <span>🌟</span>
+                            <span>十二宮位</span>
+                        </div>
+                        <div class="collapse-toggle">
+                            <span class="icon">▼</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-content">
+                    {{ZIWEI_CONTENT}}
+                </div>
+            </section>
+
+            <section id="astrology" class="section astrology">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <div class="section-title">
+                        <span class="section-icon">🌟</span>
+                        <span>心理占星分析</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div class="confidence-badge high">
+                            <span>💫</span>
+                            <span>星盤解讀</span>
+                        </div>
+                        <div class="collapse-toggle">
+                            <span class="icon">▼</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-content">
+                    {{ASTROLOGY_CONTENT}}
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p><strong>本報告由AI綜合分析系統生成</strong></p>
+            <p>整合八字命理、紫微斗數、心理占星三大體系</p>
+            <p class="timestamp">生成時間: {{TIMESTAMP}}</p>
+            <p style="margin-top: 1rem; font-size: 0.85rem; color: #666;">
+                ⚠️ 本報告僅供參考，命運掌握在自己手中。請以此為鏡，了解自己，發揮潛能，創造美好未來。
+            </p>
+        </footer>
+    </div>
+
+    <!-- Scroll to top button -->
+    <div class="scroll-top" id="scrollTop" onclick="scrollToTop()">
+        ↑
+    </div>
+
+    <script>
+        // Scroll to top functionality
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.getElementById('scrollTop');
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Collapsible sections functionality
+        function toggleSection(header) {
+            const section = header.closest('.section');
+            section.classList.toggle('collapsed');
+
+            // Save collapse state to localStorage
+            const sectionId = section.id;
+            const isCollapsed = section.classList.contains('collapsed');
+            localStorage.setItem(`section-${sectionId}-collapsed`, isCollapsed);
+        }
+
+        // Restore collapse states on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.section').forEach(section => {
+                const sectionId = section.id;
+                const isCollapsed = localStorage.getItem(`section-${sectionId}-collapsed`) === 'true';
+                if (isCollapsed) {
+                    section.classList.add('collapsed');
+                }
+            });
+        });
+
+        // Expand all sections
+        function expandAll() {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('collapsed');
+                const sectionId = section.id;
+                localStorage.setItem(`section-${sectionId}-collapsed`, 'false');
+            });
+        }
+
+        // Collapse all sections
+        function collapseAll() {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('collapsed');
+                const sectionId = section.id;
+                localStorage.setItem(`section-${sectionId}-collapsed`, 'true');
+            });
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

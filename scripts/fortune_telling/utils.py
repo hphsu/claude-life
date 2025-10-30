@@ -403,6 +403,8 @@ CITY_COORDINATES = {
     "台南": {"lat": 22.9997, "lon": 120.2270, "tz": "Asia/Taipei"},
     "高雄": {"lat": 22.6273, "lon": 120.3014, "tz": "Asia/Taipei"},
     "新竹": {"lat": 24.8138, "lon": 120.9675, "tz": "Asia/Taipei"},
+    "苗栗": {"lat": 24.5602, "lon": 120.8214, "tz": "Asia/Taipei"},
+    "miaoli": {"lat": 24.5602, "lon": 120.8214, "tz": "Asia/Taipei"},
 
     # 中國主要城市
     "北京": {"lat": 39.9042, "lon": 116.4074, "tz": "Asia/Shanghai"},
@@ -413,6 +415,8 @@ CITY_COORDINATES = {
     "重慶": {"lat": 29.5630, "lon": 106.5516, "tz": "Asia/Shanghai"},
     "杭州": {"lat": 30.2741, "lon": 120.1551, "tz": "Asia/Shanghai"},
     "南京": {"lat": 32.0603, "lon": 118.7969, "tz": "Asia/Shanghai"},
+    "汕頭": {"lat": 23.3540, "lon": 116.6819, "tz": "Asia/Shanghai"},
+    "shantou": {"lat": 23.3540, "lon": 116.6819, "tz": "Asia/Shanghai"},
 
     # 其他華人地區
     "香港": {"lat": 22.3193, "lon": 114.1694, "tz": "Asia/Hong_Kong"},

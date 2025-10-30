@@ -1,0 +1,1032 @@
+{
+  "basic_info": {
+    "name": "Frank",
+    "birth_gregorian": "1972-01-17 06:00",
+    "birth_lunar": "1971年12月2日",
+    "location": "miaoli",
+    "gender": "男",
+    "true_solar_time": false
+  },
+  "calendar_data": {
+    "gregorian": {
+      "datetime": "1972-01-17 06:00:00+08:00",
+      "year": 1972,
+      "month": 1,
+      "day": 17,
+      "hour": 6,
+      "minute": 0,
+      "timezone": "Asia/Taipei"
+    },
+    "lunar": {
+      "year": 1971,
+      "month": 12,
+      "day": 2,
+      "is_leap_month": false,
+      "year_cn": "1971年",
+      "month_cn": "12月",
+      "day_cn": "2日"
+    },
+    "true_solar_time": {
+      "original_time": "1972-01-17 06:00:00+08:00",
+      "adjusted_time": "1972-01-17 06:00:00+08:00",
+      "difference_minutes": 0.0,
+      "used": false
+    },
+    "solar_term": {
+      "current": "驚蟄",
+      "next": "春分",
+      "current_time": "1972-03-17 07:59:20.449219+08:00",
+      "next_time": "1972-02-15 08:00:00+08:00"
+    },
+    "four_pillars": {
+      "year": {
+        "stem": "辛",
+        "branch": "亥",
+        "pillar": "辛亥"
+      },
+      "month": {
+        "stem": "辛",
+        "branch": "卯",
+        "pillar": "辛卯"
+      },
+      "day": {
+        "stem": "己",
+        "branch": "未",
+        "pillar": "己未"
+      },
+      "hour": {
+        "stem": "丁",
+        "branch": "卯",
+        "pillar": "丁卯"
+      }
+    },
+    "location": {
+      "name": "miaoli",
+      "longitude": 120.8214,
+      "latitude": 24.5602,
+      "timezone": "Asia/Taipei"
+    }
+  },
+  "bazi": {
+    "calculation": {
+      "basic_chart": {
+        "year": {
+          "pillar": "辛亥",
+          "stem": "辛",
+          "branch": "亥",
+          "stem_wuxing": "金",
+          "branch_wuxing": "水",
+          "nayin": "釵釧金",
+          "yinyang": {
+            "stem": "陰",
+            "branch": "陰"
+          }
+        },
+        "month": {
+          "pillar": "辛卯",
+          "stem": "辛",
+          "branch": "卯",
+          "stem_wuxing": "金",
+          "branch_wuxing": "木",
+          "nayin": "松柏木",
+          "yinyang": {
+            "stem": "陰",
+            "branch": "陰"
+          }
+        },
+        "day": {
+          "pillar": "己未",
+          "stem": "己",
+          "branch": "未",
+          "stem_wuxing": "土",
+          "branch_wuxing": "土",
+          "nayin": "天上火",
+          "yinyang": {
+            "stem": "陰",
+            "branch": "陰"
+          }
+        },
+        "hour": {
+          "pillar": "丁卯",
+          "stem": "丁",
+          "branch": "卯",
+          "stem_wuxing": "火",
+          "branch_wuxing": "木",
+          "nayin": "爐中火",
+          "yinyang": {
+            "stem": "陰",
+            "branch": "陰"
+          }
+        },
+        "day_master": "己",
+        "day_master_wuxing": "土"
+      },
+      "wuxing_analysis": {
+        "counts": {
+          "木": 6,
+          "火": 2,
+          "土": 3,
+          "金": 2,
+          "水": 2
+        },
+        "total": 15,
+        "average": 3.0,
+        "missing": [],
+        "weak": [],
+        "strong": [
+          "木"
+        ],
+        "balance_score": 0.73
+      },
+      "ten_gods_analysis": {
+        "year": "食神",
+        "month": "食神",
+        "day": "比肩",
+        "hour": "偏印",
+        "distribution": {
+          "比肩": 0,
+          "劫財": 0,
+          "傷官": 0,
+          "食神": 2,
+          "正財": 0,
+          "偏財": 0,
+          "正官": 0,
+          "七殺": 0,
+          "正印": 0,
+          "偏印": 1
+        },
+        "dominant": [
+          "食神",
+          "偏印"
+        ],
+        "interpretation": {
+          "career": "",
+          "wealth": "",
+          "relationship": "",
+          "character": ""
+        }
+      },
+      "hidden_stems": {
+        "year": [
+          {
+            "stem": "壬",
+            "days": 7,
+            "wuxing": "水",
+            "ten_god": "正財"
+          },
+          {
+            "stem": "甲",
+            "days": 23,
+            "wuxing": "木",
+            "ten_god": "正官"
+          }
+        ],
+        "month": [
+          {
+            "stem": "乙",
+            "days": 10,
+            "wuxing": "木",
+            "ten_god": "七殺"
+          }
+        ],
+        "day": [
+          {
+            "stem": "己",
+            "days": 9,
+            "wuxing": "土",
+            "ten_god": "比肩"
+          },
+          {
+            "stem": "丁",
+            "days": 3,
+            "wuxing": "火",
+            "ten_god": "偏印"
+          },
+          {
+            "stem": "乙",
+            "days": 18,
+            "wuxing": "木",
+            "ten_god": "七殺"
+          }
+        ],
+        "hour": [
+          {
+            "stem": "乙",
+            "days": 10,
+            "wuxing": "木",
+            "ten_god": "七殺"
+          }
+        ]
+      },
+      "pattern": {
+        "type": "食神格",
+        "quality": "良好",
+        "month_commander": "食神",
+        "note": "格局判斷需結合整體命局綜合分析"
+      },
+      "yongshen": {
+        "yongshen": [],
+        "xishen": [],
+        "jishen": [],
+        "day_master_wuxing": "土",
+        "recommendation": {
+          "colors": [],
+          "directions": [],
+          "industries": []
+        }
+      },
+      "strength": {
+        "level": "身中和",
+        "score": 1.0,
+        "description": "日主力量適中，平衡穩定"
+      },
+      "luck_pillars": [
+        {
+          "sequence": 1,
+          "age_range": "3-12歲",
+          "pillar": "戊申",
+          "stem": "戊",
+          "branch": "申",
+          "stem_wuxing": "土",
+          "branch_wuxing": "金",
+          "nayin": "大驛土"
+        },
+        {
+          "sequence": 2,
+          "age_range": "13-22歲",
+          "pillar": "丁未",
+          "stem": "丁",
+          "branch": "未",
+          "stem_wuxing": "火",
+          "branch_wuxing": "土",
+          "nayin": "天河水"
+        },
+        {
+          "sequence": 3,
+          "age_range": "23-32歲",
+          "pillar": "丙午",
+          "stem": "丙",
+          "branch": "午",
+          "stem_wuxing": "火",
+          "branch_wuxing": "火",
+          "nayin": "天河水"
+        },
+        {
+          "sequence": 4,
+          "age_range": "33-42歲",
+          "pillar": "乙巳",
+          "stem": "乙",
+          "branch": "巳",
+          "stem_wuxing": "木",
+          "branch_wuxing": "火",
+          "nayin": "覆燈火"
+        },
+        {
+          "sequence": 5,
+          "age_range": "43-52歲",
+          "pillar": "甲辰",
+          "stem": "甲",
+          "branch": "辰",
+          "stem_wuxing": "木",
+          "branch_wuxing": "土",
+          "nayin": "覆燈火"
+        },
+        {
+          "sequence": 6,
+          "age_range": "53-62歲",
+          "pillar": "癸卯",
+          "stem": "癸",
+          "branch": "卯",
+          "stem_wuxing": "水",
+          "branch_wuxing": "木",
+          "nayin": "金箔金"
+        },
+        {
+          "sequence": 7,
+          "age_range": "63-72歲",
+          "pillar": "壬寅",
+          "stem": "壬",
+          "branch": "寅",
+          "stem_wuxing": "水",
+          "branch_wuxing": "木",
+          "nayin": "金箔金"
+        },
+        {
+          "sequence": 8,
+          "age_range": "73-82歲",
+          "pillar": "辛丑",
+          "stem": "辛",
+          "branch": "丑",
+          "stem_wuxing": "金",
+          "branch_wuxing": "土",
+          "nayin": "壁上土"
+        }
+      ],
+      "destiny_features": {
+        "career": {
+          "score": 5.0,
+          "level": "偏弱",
+          "characteristics": []
+        },
+        "wealth": {
+          "score": 6.0,
+          "level": "中等",
+          "characteristics": [
+            "食神生財，有賺錢天賦"
+          ]
+        },
+        "relationship": {
+          "score": 5.0,
+          "level": "偏弱",
+          "characteristics": []
+        },
+        "health": {
+          "score": 7.3,
+          "level": "良好",
+          "concerns": [],
+          "balance_score": 0.73
+        },
+        "character": {
+          "primary_traits": [
+            "仁慈有愛心"
+          ],
+          "all_traits": [
+            "仁慈有愛心"
+          ]
+        }
+      }
+    }
+  },
+  "ziwei": {
+    "calculation": {
+      "ming_palace_position": 4,
+      "ziwei_position": 1,
+      "palaces": {
+        "命宮": {
+          "name": "命宮",
+          "position": 4,
+          "branch": "辰",
+          "major_stars": [
+            "武曲"
+          ],
+          "transformations": []
+        },
+        "兄弟": {
+          "name": "兄弟",
+          "position": 5,
+          "branch": "巳",
+          "major_stars": [
+            "天同",
+            "破軍"
+          ],
+          "transformations": []
+        },
+        "夫妻": {
+          "name": "夫妻",
+          "position": 6,
+          "branch": "午",
+          "major_stars": [
+            "廉貞"
+          ],
+          "transformations": []
+        },
+        "子女": {
+          "name": "子女",
+          "position": 7,
+          "branch": "未",
+          "major_stars": [
+            "天府",
+            "七殺"
+          ],
+          "transformations": []
+        },
+        "財帛": {
+          "name": "財帛",
+          "position": 8,
+          "branch": "申",
+          "major_stars": [
+            "太陰"
+          ],
+          "transformations": []
+        },
+        "疾厄": {
+          "name": "疾厄",
+          "position": 9,
+          "branch": "酉",
+          "major_stars": [
+            "貪狼"
+          ],
+          "transformations": []
+        },
+        "遷移": {
+          "name": "遷移",
+          "position": 10,
+          "branch": "戌",
+          "major_stars": [
+            "巨門"
+          ],
+          "transformations": []
+        },
+        "僕役": {
+          "name": "僕役",
+          "position": 11,
+          "branch": "亥",
+          "major_stars": [
+            "天相"
+          ],
+          "transformations": []
+        },
+        "官祿": {
+          "name": "官祿",
+          "position": 0,
+          "branch": "子",
+          "major_stars": [
+            "天梁"
+          ],
+          "transformations": []
+        },
+        "田宅": {
+          "name": "田宅",
+          "position": 1,
+          "branch": "丑",
+          "major_stars": [
+            "紫微"
+          ],
+          "transformations": []
+        },
+        "福德": {
+          "name": "福德",
+          "position": 2,
+          "branch": "寅",
+          "major_stars": [
+            "天機"
+          ],
+          "transformations": []
+        },
+        "父母": {
+          "name": "父母",
+          "position": 3,
+          "branch": "卯",
+          "major_stars": [
+            "太陽"
+          ],
+          "transformations": []
+        }
+      },
+      "four_transformations": {
+        "祿": "巨門",
+        "權": "太陽",
+        "科": "文曲",
+        "忌": "文昌"
+      },
+      "interpretations": {
+        "命宮": {
+          "stars": [
+            "武曲"
+          ],
+          "interpretation": "財帛之星，主理財能力",
+          "importance": "極為重要"
+        },
+        "兄弟": {
+          "stars": [
+            "天同",
+            "破軍"
+          ],
+          "interpretation": "有天同、破軍組合，主天同、破軍的綜合特質",
+          "importance": "一般"
+        },
+        "夫妻": {
+          "stars": [
+            "廉貞"
+          ],
+          "interpretation": "桃花之星，主感情豐富",
+          "importance": "重要"
+        },
+        "子女": {
+          "stars": [
+            "天府",
+            "七殺"
+          ],
+          "interpretation": "有天府、七殺組合，主天府、七殺的綜合特質",
+          "importance": "一般"
+        },
+        "財帛": {
+          "stars": [
+            "太陰"
+          ],
+          "interpretation": "柔順之星，主細膩溫和",
+          "importance": "重要"
+        },
+        "疾厄": {
+          "stars": [
+            "貪狼"
+          ],
+          "interpretation": "多才之星，主才藝廣泛",
+          "importance": "一般"
+        },
+        "遷移": {
+          "stars": [
+            "巨門"
+          ],
+          "interpretation": "口才之星，主善於溝通",
+          "importance": "一般"
+        },
+        "僕役": {
+          "stars": [
+            "天相"
+          ],
+          "interpretation": "輔佐之星，主助人為樂",
+          "importance": "一般"
+        },
+        "官祿": {
+          "stars": [
+            "天梁"
+          ],
+          "interpretation": "蔭庇之星，主化解災厄",
+          "importance": "重要"
+        },
+        "田宅": {
+          "stars": [
+            "紫微"
+          ],
+          "interpretation": "帝王之星，主貴氣權威",
+          "importance": "一般"
+        },
+        "福德": {
+          "stars": [
+            "天機"
+          ],
+          "interpretation": "智慧之星，主聰明靈活",
+          "importance": "重要"
+        },
+        "父母": {
+          "stars": [
+            "太陽"
+          ],
+          "interpretation": "光明之星，主熱情積極",
+          "importance": "一般"
+        }
+      },
+      "chart_summary": {
+        "命宮主星": [
+          "武曲"
+        ],
+        "財帛主星": [
+          "太陰"
+        ],
+        "官祿主星": [
+          "天梁"
+        ],
+        "命格特徵": "武曲坐命，財帛之格"
+      }
+    }
+  },
+  "astrology": {
+    "calculation": {
+      "birth_info": {
+        "datetime": "1972-01-17T06:00:00+08:00",
+        "latitude": 24.5602,
+        "longitude": 120.8214,
+        "julian_day": 2441333.4166666665
+      },
+      "planets": {
+        "太陽": {
+          "longitude": 295.8844,
+          "latitude": 0.0001,
+          "sign": "摩羯座",
+          "degree": 25.88,
+          "speed": 1.0189,
+          "retrograde": false,
+          "position_text": "摩羯座 25°53'"
+        },
+        "月亮": {
+          "longitude": 301.6538,
+          "latitude": -0.3279,
+          "sign": "水瓶座",
+          "degree": 1.65,
+          "speed": 13.523,
+          "retrograde": false,
+          "position_text": "水瓶座 1°39'"
+        },
+        "水星": {
+          "longitude": 277.1662,
+          "latitude": -0.2422,
+          "sign": "摩羯座",
+          "degree": 7.17,
+          "speed": 1.4283,
+          "retrograde": false,
+          "position_text": "摩羯座 7°9'"
+        },
+        "金星": {
+          "longitude": 330.3558,
+          "latitude": -1.5977,
+          "sign": "雙魚座",
+          "degree": 0.36,
+          "speed": 1.2236,
+          "retrograde": false,
+          "position_text": "雙魚座 0°21'"
+        },
+        "火星": {
+          "longitude": 13.7477,
+          "latitude": 0.1729,
+          "sign": "白羊座",
+          "degree": 13.75,
+          "speed": 0.6558,
+          "retrograde": false,
+          "position_text": "白羊座 13°44'"
+        },
+        "木星": {
+          "longitude": 265.8059,
+          "latitude": 0.3808,
+          "sign": "射手座",
+          "degree": 25.81,
+          "speed": 0.2115,
+          "retrograde": false,
+          "position_text": "射手座 25°48'"
+        },
+        "土星": {
+          "longitude": 59.7766,
+          "latitude": -1.9934,
+          "sign": "金牛座",
+          "degree": 29.78,
+          "speed": -0.0271,
+          "retrograde": true,
+          "position_text": "金牛座 29°46'"
+        },
+        "天王星": {
+          "longitude": 198.3042,
+          "latitude": 0.6655,
+          "sign": "天秤座",
+          "degree": 18.3,
+          "speed": 0.006,
+          "retrograde": false,
+          "position_text": "天秤座 18°18'"
+        },
+        "海王星": {
+          "longitude": 244.5656,
+          "latitude": 1.6151,
+          "sign": "射手座",
+          "degree": 4.57,
+          "speed": 0.0263,
+          "retrograde": false,
+          "position_text": "射手座 4°33'"
+        },
+        "冥王星": {
+          "longitude": 182.0101,
+          "latitude": 16.4085,
+          "sign": "天秤座",
+          "degree": 2.01,
+          "speed": -0.0069,
+          "retrograde": true,
+          "position_text": "天秤座 2°0'"
+        }
+      },
+      "houses": {
+        "第1宮": {
+          "cusp": 284.0359,
+          "sign": "摩羯座",
+          "degree": 14.04,
+          "position_text": "摩羯座 14°2'"
+        },
+        "第2宮": {
+          "cusp": 319.1212,
+          "sign": "水瓶座",
+          "degree": 19.12,
+          "position_text": "水瓶座 19°7'"
+        },
+        "第3宮": {
+          "cusp": 355.6433,
+          "sign": "雙魚座",
+          "degree": 25.64,
+          "position_text": "雙魚座 25°38'"
+        },
+        "第4宮": {
+          "cusp": 28.2754,
+          "sign": "白羊座",
+          "degree": 28.28,
+          "position_text": "白羊座 28°16'"
+        },
+        "第5宮": {
+          "cusp": 55.5574,
+          "sign": "金牛座",
+          "degree": 25.56,
+          "position_text": "金牛座 25°33'"
+        },
+        "第6宮": {
+          "cusp": 79.6971,
+          "sign": "雙子座",
+          "degree": 19.7,
+          "position_text": "雙子座 19°41'"
+        },
+        "第7宮": {
+          "cusp": 104.0359,
+          "sign": "巨蟹座",
+          "degree": 14.04,
+          "position_text": "巨蟹座 14°2'"
+        },
+        "第8宮": {
+          "cusp": 139.1212,
+          "sign": "獅子座",
+          "degree": 19.12,
+          "position_text": "獅子座 19°7'"
+        },
+        "第9宮": {
+          "cusp": 175.6433,
+          "sign": "處女座",
+          "degree": 25.64,
+          "position_text": "處女座 25°38'"
+        },
+        "第10宮": {
+          "cusp": 208.2754,
+          "sign": "天秤座",
+          "degree": 28.28,
+          "position_text": "天秤座 28°16'"
+        },
+        "第11宮": {
+          "cusp": 235.5574,
+          "sign": "天蠍座",
+          "degree": 25.56,
+          "position_text": "天蠍座 25°33'"
+        },
+        "第12宮": {
+          "cusp": 259.6971,
+          "sign": "射手座",
+          "degree": 19.7,
+          "position_text": "射手座 19°41'"
+        },
+        "上升點": {
+          "longitude": 284.0359,
+          "sign": "摩羯座",
+          "degree": 14.04,
+          "position_text": "摩羯座 14°2'"
+        },
+        "天頂": {
+          "longitude": 208.2754,
+          "sign": "天秤座",
+          "degree": 28.28,
+          "position_text": "天秤座 28°16'"
+        },
+        "下降點": {
+          "longitude": 104.0359,
+          "sign": "巨蟹座",
+          "degree": 14.04,
+          "position_text": "巨蟹座 14°2'"
+        },
+        "天底": {
+          "longitude": 28.2754,
+          "sign": "白羊座",
+          "degree": 28.28,
+          "position_text": "白羊座 28°16'"
+        }
+      },
+      "aspects": [
+        {
+          "planet1": "月亮",
+          "planet2": "冥王星",
+          "aspect": "三分相",
+          "angle": 119.64,
+          "orb": 0.36,
+          "applying": true,
+          "strength": 0.9554624999999994
+        },
+        {
+          "planet1": "金星",
+          "planet2": "土星",
+          "aspect": "四分相",
+          "angle": 89.42,
+          "orb": 0.58,
+          "applying": true,
+          "strength": 0.9275999999999982
+        },
+        {
+          "planet1": "月亮",
+          "planet2": "土星",
+          "aspect": "三分相",
+          "angle": 118.12,
+          "orb": 1.88,
+          "applying": true,
+          "strength": 0.7653500000000015
+        },
+        {
+          "planet1": "土星",
+          "planet2": "冥王星",
+          "aspect": "三分相",
+          "angle": 122.23,
+          "orb": 2.23,
+          "applying": false,
+          "strength": 0.720812500000001
+        },
+        {
+          "planet1": "海王星",
+          "planet2": "冥王星",
+          "aspect": "六分相",
+          "angle": 62.56,
+          "orb": 2.56,
+          "applying": true,
+          "strength": 0.5740833333333342
+        },
+        {
+          "planet1": "月亮",
+          "planet2": "海王星",
+          "aspect": "六分相",
+          "angle": 57.09,
+          "orb": 2.91,
+          "applying": true,
+          "strength": 0.5147000000000002
+        },
+        {
+          "planet1": "太陽",
+          "planet2": "土星",
+          "aspect": "三分相",
+          "angle": 123.89,
+          "orb": 3.89,
+          "applying": true,
+          "strength": 0.5134750000000032
+        },
+        {
+          "planet1": "金星",
+          "planet2": "海王星",
+          "aspect": "四分相",
+          "angle": 85.79,
+          "orb": 4.21,
+          "applying": true,
+          "strength": 0.47377499999999984
+        },
+        {
+          "planet1": "火星",
+          "planet2": "天王星",
+          "aspect": "對分相",
+          "angle": 175.44,
+          "orb": 4.56,
+          "applying": true,
+          "strength": 0.43043750000000003
+        },
+        {
+          "planet1": "土星",
+          "planet2": "海王星",
+          "aspect": "對分相",
+          "angle": 175.21,
+          "orb": 4.79,
+          "applying": false,
+          "strength": 0.4013750000000016
+        },
+        {
+          "planet1": "水星",
+          "planet2": "冥王星",
+          "aspect": "四分相",
+          "angle": 95.16,
+          "orb": 5.16,
+          "applying": true,
+          "strength": 0.35548749999999885
+        },
+        {
+          "planet1": "太陽",
+          "planet2": "月亮",
+          "aspect": "合相",
+          "angle": 5.77,
+          "orb": 5.77,
+          "applying": false,
+          "strength": 0.27882500000000476
+        },
+        {
+          "planet1": "金星",
+          "planet2": "木星",
+          "aspect": "六分相",
+          "angle": 64.55,
+          "orb": 4.55,
+          "applying": true,
+          "strength": 0.2416833333333367
+        },
+        {
+          "planet1": "太陽",
+          "planet2": "冥王星",
+          "aspect": "三分相",
+          "angle": 113.87,
+          "orb": 6.13,
+          "applying": true,
+          "strength": 0.2342875000000042
+        },
+        {
+          "planet1": "木星",
+          "planet2": "冥王星",
+          "aspect": "四分相",
+          "angle": 83.8,
+          "orb": 6.2,
+          "applying": true,
+          "strength": 0.22447500000000176
+        },
+        {
+          "planet1": "水星",
+          "planet2": "火星",
+          "aspect": "四分相",
+          "angle": 96.58,
+          "orb": 6.58,
+          "applying": true,
+          "strength": 0.17731249999999932
+        },
+        {
+          "planet1": "太陽",
+          "planet2": "天王星",
+          "aspect": "四分相",
+          "angle": 97.58,
+          "orb": 7.58,
+          "applying": true,
+          "strength": 0.05247499999999761
+        }
+      ],
+      "interpretations": {
+        "太陽星座": {
+          "sign": "摩羯座",
+          "meaning": "務實負責，有野心，重視成就",
+          "importance": "核心人格，自我表達方式"
+        },
+        "月亮星座": {
+          "sign": "水瓶座",
+          "meaning": "情感超然，需要獨立",
+          "importance": "情感需求，內在自我"
+        },
+        "上升星座": {
+          "sign": "摩羯座",
+          "meaning": "給人成熟穩重的印象，有責任感",
+          "importance": "外在形象，人生態度"
+        },
+        "重要相位": [
+          {
+            "aspect_info": "月亮 三分相 冥王星",
+            "strength": "96%",
+            "interpretation": "月亮與冥王星形成三分相，順暢和諧，天賦之相"
+          },
+          {
+            "aspect_info": "金星 四分相 土星",
+            "strength": "93%",
+            "interpretation": "金星與土星形成四分相，挑戰相位，需要整合"
+          },
+          {
+            "aspect_info": "月亮 三分相 土星",
+            "strength": "77%",
+            "interpretation": "月亮與土星形成三分相，順暢和諧，天賦之相"
+          },
+          {
+            "aspect_info": "土星 三分相 冥王星",
+            "strength": "72%",
+            "interpretation": "土星與冥王星形成三分相，順暢和諧，天賦之相"
+          },
+          {
+            "aspect_info": "海王星 六分相 冥王星",
+            "strength": "57%",
+            "interpretation": "海王星與冥王星形成六分相，和諧相處，機會之相"
+          }
+        ],
+        "行星落宮": {
+          "太陽": {
+            "house": 1,
+            "interpretation": "太陽落1宮，影響自我認同與人格表現"
+          },
+          "月亮": {
+            "house": 1,
+            "interpretation": "月亮落1宮，影響自我認同與人格表現"
+          },
+          "水星": {
+            "house": 12,
+            "interpretation": "水星落12宮，影響潛意識與靈性超越"
+          },
+          "金星": {
+            "house": 2,
+            "interpretation": "金星落2宮，影響物質資源與價值觀"
+          },
+          "火星": {
+            "house": 3,
+            "interpretation": "火星落3宮，影響溝通學習與鄰里關係"
+          }
+        }
+      },
+      "summary": {
+        "核心三要素": {
+          "太陽星座": "摩羯座 25°53'",
+          "月亮星座": "水瓶座 1°39'",
+          "上升星座": "摩羯座 14°2'"
+        },
+        "個人行星": {
+          "水星": "摩羯座 7°9'",
+          "金星": "雙魚座 0°21'",
+          "火星": "白羊座 13°44'"
+        },
+        "社會行星": {
+          "木星": "射手座 25°48'",
+          "土星": "金牛座 29°46'"
+        },
+        "世代行星": {
+          "天王星": "天秤座 18°18'",
+          "海王星": "射手座 4°33'",
+          "冥王星": "天秤座 2°0'"
+        },
+        "四軸點": {
+          "上升點": "摩羯座 14°2'",
+          "天頂": "天秤座 28°16'",
+          "下降點": "巨蟹座 14°2'",
+          "天底": "白羊座 28°16'"
+        }
+      }
+    }
+  }
+}

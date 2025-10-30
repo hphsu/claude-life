@@ -43,3 +43,17 @@ Thumbs.db
 # Environment variables
 .env
 .env.local
+
+# Fortune-telling generated data files
+data/fortune-telling/fortune_tell_*.json
+data/fortune-telling/fortune_tell_*.html
+data/fortune-telling/*_分析報告_*.md
+data/fortune-telling/綜合分析報告_*.md
+
+# Keep one example set for documentation
+!data/fortune-telling/fortune_tell_Frank_20251029_105037.json
+!data/fortune-telling/fortune_tell_Frank_20251029_105037.html
+!data/fortune-telling/八字命理分析報告_Frank_20251029.md
+!data/fortune-telling/紫微斗數分析報告_Frank_20251029.md
+!data/fortune-telling/心理占星分析報告_Frank_20251029.md
+!data/fortune-telling/綜合分析報告_Frank_20251029.md

@@ -68,7 +68,7 @@ Launch expert agents **in parallel** using the Task tool for each selected metho
 
 **Agent 1: BaZi Expert** (if 'bazi' in methods)
 ```
-Subagent: general-purpose
+Subagent: bazi-expert
 Task: Analyze the provided BaZi (八字) data and generate a comprehensive Traditional Chinese analysis
 
 Input Data:
@@ -115,7 +115,7 @@ Output Format:
 
 **Agent 2: Zi Wei Expert** (if 'ziwei' in methods)
 ```
-Subagent: general-purpose
+Subagent: ziwei-expert
 Task: Analyze the provided Zi Wei Dou Shu (紫微斗數) data and generate a comprehensive Traditional Chinese analysis
 
 Input Data:
@@ -152,7 +152,7 @@ Output Format:
 
 **Agent 3: Astrology Expert** (if 'astrology' in methods)
 ```
-Subagent: general-purpose
+Subagent: astrology-expert
 Task: Analyze the provided psychological astrology data and generate a comprehensive Traditional Chinese analysis
 
 Input Data:
@@ -193,7 +193,7 @@ Output Format:
 
 **Agent 4: Name Analysis Expert** (if 'name' in methods)
 ```
-Subagent: general-purpose
+Subagent: name-analysis-expert
 Task: Analyze the provided Name Analysis (姓名學) data and generate a comprehensive Traditional Chinese analysis
 
 Input Data:
@@ -230,7 +230,7 @@ Output Format:
 
 **Agent 5: Plum Blossom Expert** (if 'plum' in methods)
 ```
-Subagent: general-purpose
+Subagent: plum-blossom-expert
 Task: Analyze the provided Plum Blossom Numerology (梅花易數) data and generate a comprehensive Traditional Chinese analysis
 
 Input Data:
@@ -267,7 +267,7 @@ Output Format:
 
 **Agent 6: Numerology Expert** (if 'numerology' in methods)
 ```
-Subagent: general-purpose
+Subagent: numerology-expert
 Task: Analyze the provided Western Numerology (生命靈數) data and generate a comprehensive Traditional Chinese analysis
 
 Input Data:
@@ -307,7 +307,7 @@ Output Format:
 
 **Agent 7: Qi Men Expert** (if 'qimen' in methods)
 ```
-Subagent: general-purpose
+Subagent: qimen-expert
 Task: Analyze the provided Qi Men Dun Jia (奇門遁甲) data and generate a comprehensive Traditional Chinese analysis
 
 Input Data:
@@ -347,7 +347,7 @@ Output Format:
 
 **Agent 8: Liu Yao Expert** (if 'liuyao' in methods)
 ```
-Subagent: general-purpose
+Subagent: liuyao-expert
 Task: Analyze the provided Liu Yao (六爻) divination data and generate a comprehensive Traditional Chinese analysis
 
 Input Data:
@@ -402,7 +402,7 @@ All selected expert agents must complete before proceeding. Store their outputs:
 Launch the synthesis agent **sequentially** (after Step 5 completes):
 
 ```
-Subagent: general-purpose
+Subagent: synthesis-expert
 Task: Synthesize ALL available expert analyses into a comprehensive, cross-validated report
 
 Input Data:

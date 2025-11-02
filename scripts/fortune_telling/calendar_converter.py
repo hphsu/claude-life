@@ -320,12 +320,16 @@ class CalendarConverter:
             太陽到達該黃經的時刻
         """
         # 估算起始日期（根據黃經粗略估算月份）
+        # 立春(315°)、雨水(330°)、驚蟄(345°)在冬春之交，屬於當年而非次年
         month = int(target_longitude / 30) + 3
         if month > 12:
             month -= 12
-            year += 1
+            # 只有當黃經在春分(0°)到立冬(225°)之間時才需要增加年份
+            # 立春(315°)、雨水(330°)、驚蟄(345°)都是當年的節氣
+            if target_longitude < 300:
+                year += 1
 
-        start_date = datetime(year if month <= 12 else year - 1, month, 1)
+        start_date = datetime(year, month, 1)
 
         # 使用二分法查找精確時刻
         observer = ephem.Observer()

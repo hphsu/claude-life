@@ -1,12 +1,23 @@
 """
-HTML 報告生成器 (Enhanced with Phase 4 Features)
+HTML 報告生成器 (Comprehensive 8-Method Analysis)
 ================
 
-為綜合命理分析生成美觀的HTML報告
+為綜合命理分析生成美觀的HTML報告，整合八大命理體系：
+- 八字命理 (Bazi)
+- 紫微斗數 (Ziwei)
+- 西洋占星 (Astrology)
+- 梅花易數 (Plum Blossom)
+- 奇門遁甲 (Qimen Dunjia)
+- 六爻占卜 (Liuyao)
+- 生命靈數 (Numerology)
+- 姓名學 (Name Analysis)
+
+功能特色：
 - 信心度指標與色彩編碼
 - 三方法對比可視化
 - 時間軸可視化
-- LLM分析展示
+- LLM深度分析展示
+- 完整八方法詳細報告
 """
 
 from typing import Dict, List, Optional
@@ -253,17 +264,17 @@ def generate_html_report(data: Dict, output_path: str) -> str:
         body {{
             font-family: "PingFang TC", "Microsoft JhengHei", "Heiti TC", sans-serif;
             line-height: 1.8;
-            color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #e0e0e0;
+            background: #000000;
             padding: 20px;
         }}
 
         .container {{
             max-width: 1200px;
             margin: 0 auto;
-            background: white;
+            background: #1a1a1a;
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
             overflow: hidden;
         }}
 
@@ -340,6 +351,7 @@ def generate_html_report(data: Dict, output_path: str) -> str:
 
         .content {{
             padding: 40px;
+            background: #1a1a1a;
         }}
 
         .section {{
@@ -348,10 +360,10 @@ def generate_html_report(data: Dict, output_path: str) -> str:
 
         .section-title {{
             font-size: 2em;
-            color: #667eea;
+            color: #8b9cff;
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 3px solid #667eea;
+            border-bottom: 3px solid #8b9cff;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -360,14 +372,14 @@ def generate_html_report(data: Dict, output_path: str) -> str:
         .subsection {{
             margin: 30px 0;
             padding: 25px;
-            background: #f8f9fa;
+            background: #2a2a2a;
             border-radius: 15px;
-            border-left: 5px solid #667eea;
+            border-left: 5px solid #8b9cff;
         }}
 
         .subsection-title {{
             font-size: 1.5em;
-            color: #764ba2;
+            color: #a5b4fc;
             margin-bottom: 15px;
         }}
 
@@ -409,16 +421,16 @@ def generate_html_report(data: Dict, output_path: str) -> str:
 
         /* Phase 4: Method Comparison */
         .method-comparison {{
-            background: white;
+            background: #2a2a2a;
             border-radius: 15px;
             padding: 25px;
             margin: 20px 0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }}
 
         .comparison-title {{
             font-size: 1.3em;
-            color: #667eea;
+            color: #8b9cff;
             margin-bottom: 20px;
             display: flex;
             align-items: center;
@@ -426,7 +438,7 @@ def generate_html_report(data: Dict, output_path: str) -> str:
         }}
 
         .convergent-section {{
-            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 100%);
             padding: 20px;
             border-radius: 10px;
             margin-bottom: 20px;
@@ -439,7 +451,7 @@ def generate_html_report(data: Dict, output_path: str) -> str:
             gap: 10px;
             margin-bottom: 15px;
             font-weight: bold;
-            color: #2E7D32;
+            color: #a5d6a7;
         }}
 
         .convergent-icon {{
@@ -465,8 +477,8 @@ def generate_html_report(data: Dict, output_path: str) -> str:
         }}
 
         .trait-tag.convergent {{
-            background: white;
-            color: #2E7D32;
+            background: #1a1a1a;
+            color: #a5d6a7;
             border: 2px solid #4CAF50;
         }}
 
@@ -484,17 +496,17 @@ def generate_html_report(data: Dict, output_path: str) -> str:
         }}
 
         .perspective-card.perspective-bazi {{
-            background: #fff3e0;
+            background: #2a1f00;
             border-left-color: #FF9800;
         }}
 
         .perspective-card.perspective-ziwei {{
-            background: #e8eaf6;
+            background: #1a1a2e;
             border-left-color: #673AB7;
         }}
 
         .perspective-card.perspective-astro {{
-            background: #e1f5fe;
+            background: #001f2a;
             border-left-color: #03A9F4;
         }}
 
@@ -511,26 +523,26 @@ def generate_html_report(data: Dict, output_path: str) -> str:
         }}
 
         .trait-tag.bazi {{
-            background: white;
-            color: #E65100;
+            background: #1a1a1a;
+            color: #ffb74d;
             border: 2px solid #FF9800;
         }}
 
         .trait-tag.ziwei {{
-            background: white;
-            color: #4527A0;
+            background: #1a1a1a;
+            color: #9575cd;
             border: 2px solid #673AB7;
         }}
 
         .trait-tag.astro {{
-            background: white;
-            color: #01579B;
+            background: #1a1a1a;
+            color: #4fc3f7;
             border: 2px solid #03A9F4;
         }}
 
         /* Phase 4: Timeline Visualization */
         .timeline-section {{
-            background: #f8f9fa;
+            background: #2a2a2a;
             padding: 25px;
             border-radius: 15px;
             margin: 20px 0;
@@ -538,7 +550,7 @@ def generate_html_report(data: Dict, output_path: str) -> str:
 
         .timeline-title {{
             font-size: 1.3em;
-            color: #667eea;
+            color: #8b9cff;
             margin-bottom: 20px;
         }}
 
@@ -549,11 +561,11 @@ def generate_html_report(data: Dict, output_path: str) -> str:
         }}
 
         .timeline-item {{
-            background: white;
+            background: #1f1f1f;
             padding: 15px;
             border-radius: 10px;
             border-left: 4px solid;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
             position: relative;
         }}
 
@@ -564,7 +576,7 @@ def generate_html_report(data: Dict, output_path: str) -> str:
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            border: 3px solid white;
+            border: 3px solid #000;
         }}
 
         .timeline-content {{
@@ -580,7 +592,7 @@ def generate_html_report(data: Dict, output_path: str) -> str:
 
         .timeline-age {{
             font-size: 0.9em;
-            color: #666;
+            color: #b0b0b0;
             margin-bottom: 5px;
         }}
 
@@ -591,7 +603,7 @@ def generate_html_report(data: Dict, output_path: str) -> str:
 
         /* Phase 4: LLM Analysis */
         .llm-analysis-section {{
-            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            background: linear-gradient(135deg, #1a2a3a 0%, #2d3d4d 100%);
             padding: 25px;
             border-radius: 15px;
             margin: 20px 0;
@@ -602,13 +614,13 @@ def generate_html_report(data: Dict, output_path: str) -> str:
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: white;
+            background: #1a1a1a;
             padding: 8px 16px;
             border-radius: 20px;
             font-weight: bold;
-            color: #1976D2;
+            color: #64b5f6;
             margin-bottom: 15px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }}
 
         .llm-icon {{
@@ -616,11 +628,12 @@ def generate_html_report(data: Dict, output_path: str) -> str:
         }}
 
         .llm-content {{
-            background: white;
+            background: #2a2a2a;
             padding: 20px;
             border-radius: 10px;
             line-height: 2;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            color: #e0e0e0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }}
 
         .score-card {{
@@ -651,16 +664,16 @@ def generate_html_report(data: Dict, output_path: str) -> str:
         }}
 
         .domain-card {{
-            background: white;
+            background: #2a2a2a;
             border-radius: 15px;
             padding: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }}
 
         .domain-card:hover {{
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
         }}
 
         .domain-icon {{
@@ -671,24 +684,25 @@ def generate_html_report(data: Dict, output_path: str) -> str:
         .domain-name {{
             font-size: 1.3em;
             font-weight: bold;
-            color: #667eea;
+            color: #8b9cff;
             margin-bottom: 15px;
         }}
 
         .domain-rating {{
             font-size: 2em;
             font-weight: bold;
-            color: #764ba2;
+            color: #a5b4fc;
             margin: 10px 0;
         }}
 
         .narrative-box {{
-            background: #ffffff;
-            border: 2px solid #e0e0e0;
+            background: #2a2a2a;
+            border: 2px solid #3a3a3a;
             border-radius: 10px;
             padding: 25px;
             margin: 20px 0;
             line-height: 2;
+            color: #e0e0e0;
         }}
 
         .insight-list {{
@@ -699,33 +713,34 @@ def generate_html_report(data: Dict, output_path: str) -> str:
         .insight-list li {{
             padding: 15px;
             margin: 10px 0;
-            background: white;
+            background: #2a2a2a;
             border-radius: 10px;
-            border-left: 4px solid #667eea;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid #8b9cff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            color: #e0e0e0;
         }}
 
         .insight-list li strong {{
-            color: #667eea;
+            color: #8b9cff;
         }}
 
         .footer {{
-            background: #f8f9fa;
+            background: #0a0a0a;
             padding: 30px;
             text-align: center;
-            color: #666;
-            border-top: 1px solid #e0e0e0;
+            color: #b0b0b0;
+            border-top: 1px solid #333;
         }}
 
         .timestamp {{
             font-size: 0.9em;
-            color: #999;
+            color: #808080;
             margin-top: 10px;
         }}
 
         @media print {{
             body {{
-                background: white;
+                background: #000000;
                 padding: 0;
             }}
             .container {{
@@ -791,15 +806,15 @@ def generate_html_report(data: Dict, output_path: str) -> str:
 """
 
     # ========================================
-    # 三方法綜合分析（Phase 4 Enhanced）
+    # 綜合分析（Comprehensive Synthesis）
     # ========================================
     if synthesis:
         html += """
             <!-- Comprehensive Synthesis Section -->
             <div class="section">
-                <h2 class="section-title">🎯 三方法綜合分析</h2>
+                <h2 class="section-title">🎯 綜合分析總覽</h2>
                 <p style="font-size: 1.1em; color: #666; margin-bottom: 30px;">
-                    整合<strong>八字命理</strong>、<strong>紫微斗數</strong>、<strong>西洋占星</strong>三大傳統命理方法的深度分析
+                    整合<strong>八字命理</strong>、<strong>紫微斗數</strong>、<strong>西洋占星</strong>、<strong>梅花易數</strong>、<strong>奇門遁甲</strong>、<strong>六爻占卜</strong>、<strong>生命靈數</strong>、<strong>姓名學</strong>八大命理體系的綜合分析
                 </p>
 """
 
@@ -1006,6 +1021,327 @@ def generate_html_report(data: Dict, output_path: str) -> str:
             </div>
 """
 
+    # ========================================
+    # 梅花易數分析（Plum Blossom）
+    # ========================================
+    plum = data.get('plum_blossom', {})
+    plum_interp = plum.get('interpretation', {})
+    if plum_interp:
+        confidence_data = plum_interp.get('confidence_level', {})
+
+        html += f"""
+            <div class="section">
+                <h2 class="section-title">🌸 梅花易數分析</h2>
+"""
+
+        # 卦象分析
+        hexagram_analysis = plum_interp.get('hexagram_analysis', {})
+        if hexagram_analysis:
+            html += f"""
+                <div class="subsection">
+                    <h3 class="subsection-title">卦象解析</h3>
+                    {_render_confidence_badge(confidence_data)}
+
+                    <div class="narrative-box">
+                        {str(hexagram_analysis).replace(chr(10), '<br>')}
+                    </div>
+                </div>
+"""
+
+        # 時間卦分析
+        time_hexagram = plum_interp.get('time_hexagram', {})
+        if time_hexagram:
+            html += f"""
+                <div class="subsection">
+                    <h3 class="subsection-title">時間卦分析</h3>
+                    <div class="narrative-box">
+                        {str(time_hexagram).replace(chr(10), '<br>')}
+                    </div>
+                </div>
+"""
+
+        # 整體解讀
+        overall = plum_interp.get('overall_interpretation', '')
+        if overall:
+            html += f"""
+                <div class="subsection">
+                    <h3 class="subsection-title">整體解讀</h3>
+                    <div class="narrative-box">
+                        {overall.replace(chr(10), '<br>')}
+                    </div>
+
+                    {_render_llm_analysis(plum_interp, '梅花易數')}
+                </div>
+"""
+
+        html += """
+            </div>
+"""
+
+    # ========================================
+    # 奇門遁甲分析（Qimen Dunjia）
+    # ========================================
+    qimen = data.get('qimen', {})
+    qimen_interp = qimen.get('interpretation', {})
+    if qimen_interp:
+        confidence_data = qimen_interp.get('confidence_level', {})
+
+        html += f"""
+            <div class="section">
+                <h2 class="section-title">🗺️ 奇門遁甲分析</h2>
+"""
+
+        # 局盤分析
+        bureau_analysis = qimen_interp.get('bureau_analysis', {})
+        if bureau_analysis:
+            html += f"""
+                <div class="subsection">
+                    <h3 class="subsection-title">奇門局盤</h3>
+                    {_render_confidence_badge(confidence_data)}
+
+                    <div class="narrative-box">
+                        {str(bureau_analysis).replace(chr(10), '<br>')}
+                    </div>
+                </div>
+"""
+
+        # 用神分析
+        deity_analysis = qimen_interp.get('deity_analysis', {})
+        if deity_analysis:
+            html += f"""
+                <div class="subsection">
+                    <h3 class="subsection-title">用神分析</h3>
+                    <div class="narrative-box">
+                        {str(deity_analysis).replace(chr(10), '<br>')}
+                    </div>
+                </div>
+"""
+
+        # 吉凶預測
+        prediction = qimen_interp.get('prediction', '')
+        if prediction:
+            html += f"""
+                <div class="subsection">
+                    <h3 class="subsection-title">吉凶預測</h3>
+                    <div class="narrative-box">
+                        {prediction.replace(chr(10), '<br>')}
+                    </div>
+
+                    {_render_llm_analysis(qimen_interp, '奇門遁甲')}
+                </div>
+"""
+
+        html += """
+            </div>
+"""
+
+    # ========================================
+    # 六爻分析（Liuyao）
+    # ========================================
+    liuyao = data.get('liuyao', {})
+    liuyao_interp = liuyao.get('interpretation', {})
+    if liuyao_interp:
+        confidence_data = liuyao_interp.get('confidence_level', {})
+
+        html += f"""
+            <div class="section">
+                <h2 class="section-title">☯️ 六爻占卜分析</h2>
+"""
+
+        # 本卦分析
+        primary_hexagram = liuyao_interp.get('primary_hexagram', {})
+        if primary_hexagram:
+            html += f"""
+                <div class="subsection">
+                    <h3 class="subsection-title">本卦分析</h3>
+                    {_render_confidence_badge(confidence_data)}
+
+                    <div class="narrative-box">
+                        {str(primary_hexagram).replace(chr(10), '<br>')}
+                    </div>
+                </div>
+"""
+
+        # 變卦分析
+        changed_hexagram = liuyao_interp.get('changed_hexagram', {})
+        if changed_hexagram:
+            html += f"""
+                <div class="subsection">
+                    <h3 class="subsection-title">變卦分析</h3>
+                    <div class="narrative-box">
+                        {str(changed_hexagram).replace(chr(10), '<br>')}
+                    </div>
+                </div>
+"""
+
+        # 世應分析
+        world_response = liuyao_interp.get('world_response_analysis', {})
+        if world_response:
+            html += f"""
+                <div class="subsection">
+                    <h3 class="subsection-title">世應分析</h3>
+                    <div class="narrative-box">
+                        {str(world_response).replace(chr(10), '<br>')}
+                    </div>
+                </div>
+"""
+
+        # 綜合判斷
+        overall = liuyao_interp.get('overall_judgment', '')
+        if overall:
+            html += f"""
+                <div class="subsection">
+                    <h3 class="subsection-title">綜合判斷</h3>
+                    <div class="narrative-box">
+                        {overall.replace(chr(10), '<br>')}
+                    </div>
+
+                    {_render_llm_analysis(liuyao_interp, '六爻占卜')}
+                </div>
+"""
+
+        html += """
+            </div>
+"""
+
+    # ========================================
+    # 生命靈數分析（Numerology）
+    # ========================================
+    numerology = data.get('numerology', {})
+    num_interp = numerology.get('interpretation', {})
+    if num_interp:
+        confidence_data = num_interp.get('confidence_level', {})
+
+        html += f"""
+            <div class="section">
+                <h2 class="section-title">🔢 生命靈數分析</h2>
+"""
+
+        # 生命靈數
+        life_path = num_interp.get('life_path_number', {})
+        if life_path:
+            html += f"""
+                <div class="subsection">
+                    <h3 class="subsection-title">生命靈數</h3>
+                    {_render_confidence_badge(confidence_data)}
+
+                    <div class="narrative-box">
+                        {str(life_path).replace(chr(10), '<br>')}
+                    </div>
+                </div>
+"""
+
+        # 天賦數
+        destiny_number = num_interp.get('destiny_number', {})
+        if destiny_number:
+            html += f"""
+                <div class="subsection">
+                    <h3 class="subsection-title">天賦數</h3>
+                    <div class="narrative-box">
+                        {str(destiny_number).replace(chr(10), '<br>')}
+                    </div>
+                </div>
+"""
+
+        # 靈魂數
+        soul_number = num_interp.get('soul_number', {})
+        if soul_number:
+            html += f"""
+                <div class="subsection">
+                    <h3 class="subsection-title">靈魂數</h3>
+                    <div class="narrative-box">
+                        {str(soul_number).replace(chr(10), '<br>')}
+                    </div>
+                </div>
+"""
+
+        # 綜合解析
+        overall = num_interp.get('overall_analysis', '')
+        if overall:
+            html += f"""
+                <div class="subsection">
+                    <h3 class="subsection-title">綜合解析</h3>
+                    <div class="narrative-box">
+                        {overall.replace(chr(10), '<br>')}
+                    </div>
+
+                    {_render_llm_analysis(num_interp, '生命靈數')}
+                </div>
+"""
+
+        html += """
+            </div>
+"""
+
+    # ========================================
+    # 姓名學分析（Name Analysis）
+    # ========================================
+    name_analysis = data.get('name_analysis', {})
+    name_interp = name_analysis.get('interpretation', {})
+    if name_interp:
+        confidence_data = name_interp.get('confidence_level', {})
+
+        html += f"""
+            <div class="section">
+                <h2 class="section-title">📝 姓名學分析</h2>
+"""
+
+        # 五格剖象
+        five_grids = name_interp.get('five_grids', {})
+        if five_grids:
+            html += f"""
+                <div class="subsection">
+                    <h3 class="subsection-title">五格剖象</h3>
+                    {_render_confidence_badge(confidence_data)}
+
+                    <div class="narrative-box">
+                        {str(five_grids).replace(chr(10), '<br>')}
+                    </div>
+                </div>
+"""
+
+        # 三才配置
+        three_talents = name_interp.get('three_talents', {})
+        if three_talents:
+            html += f"""
+                <div class="subsection">
+                    <h3 class="subsection-title">三才配置</h3>
+                    <div class="narrative-box">
+                        {str(three_talents).replace(chr(10), '<br>')}
+                    </div>
+                </div>
+"""
+
+        # 81數理
+        eighty_one = name_interp.get('eighty_one_number', {})
+        if eighty_one:
+            html += f"""
+                <div class="subsection">
+                    <h3 class="subsection-title">81數理</h3>
+                    <div class="narrative-box">
+                        {str(eighty_one).replace(chr(10), '<br>')}
+                    </div>
+                </div>
+"""
+
+        # 姓名綜評
+        overall = name_interp.get('overall_evaluation', '')
+        if overall:
+            html += f"""
+                <div class="subsection">
+                    <h3 class="subsection-title">姓名綜評</h3>
+                    <div class="narrative-box">
+                        {overall.replace(chr(10), '<br>')}
+                    </div>
+
+                    {_render_llm_analysis(name_interp, '姓名學')}
+                </div>
+"""
+
+        html += """
+            </div>
+"""
+
     # Footer
     html += f"""
         </div>
@@ -1013,12 +1349,467 @@ def generate_html_report(data: Dict, output_path: str) -> str:
         <!-- Footer -->
         <div class="footer">
             <p><strong>重要提醒</strong></p>
-            <p>本報告整合<strong>八字命理</strong>、<strong>紫微斗數</strong>、<strong>西洋占星</strong>三大傳統命理方法。</p>
+            <p>本報告整合<strong>八字命理</strong>、<strong>紫微斗數</strong>、<strong>西洋占星</strong>、<strong>梅花易數</strong>、<strong>奇門遁甲</strong>、<strong>六爻占卜</strong>、<strong>生命靈數</strong>、<strong>姓名學</strong>八大命理方法的綜合分析。</p>
             <p><strong>命理分析僅供參考，您的人生由自己掌握。</strong></p>
             <p class="timestamp">分析時間：{datetime.now().strftime('%Y年%m月%d日 %H:%M:%S')}</p>
-            <p class="timestamp">SuperClaude Fortune-Telling System v2.0 (Phase 4 Enhanced)</p>
+            <p class="timestamp">SuperClaude Fortune-Telling System v2.0 (Comprehensive 8-Method Analysis)</p>
         </div>
     </div>
+</body>
+</html>
+"""
+
+    # 寫入文件
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.write(html)
+
+    return output_path
+
+
+def generate_html_from_markdown_files(analysis_dir: str, output_path: str) -> str:
+    """
+    從Markdown分析文件生成完整的HTML報告
+
+    Args:
+        analysis_dir: 包含calculations.json和分析.md文件的目錄
+        output_path: 輸出HTML文件路徑
+
+    Returns:
+        生成的HTML文件路徑
+    """
+    import json
+    import os
+
+    # 讀取基本信息
+    calc_path = os.path.join(analysis_dir, 'calculations.json')
+    with open(calc_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    basic_info = data.get('basic_info', {})
+    name = basic_info.get('name', '未知')
+    birth_gregorian = basic_info.get('birth_gregorian', '')
+    location = basic_info.get('location', '')
+    gender = basic_info.get('gender', '')
+
+    # 獲取四柱
+    calendar_data = data.get('calendar_data', {})
+    four_pillars = calendar_data.get('four_pillars', {})
+    year_pillar = four_pillars.get('year_pillar', '')
+    month_pillar = four_pillars.get('month_pillar', '')
+    day_pillar = four_pillars.get('day_pillar', '')
+    hour_pillar = four_pillars.get('hour_pillar', '')
+
+    # 讀取各個分析markdown文件
+    def read_md_file(filename):
+        filepath = os.path.join(analysis_dir, filename)
+        if os.path.exists(filepath):
+            with open(filepath, 'r', encoding='utf-8') as f:
+                return f.read()
+        return None
+
+    synthesis = read_md_file('synthesis_report.md')
+    bazi = read_md_file('bazi_analysis.md')
+    ziwei = read_md_file('ziwei_analysis.md')
+    astrology = read_md_file('astrology_analysis.md')
+    plum = read_md_file('plum_analysis.md')
+    qimen = read_md_file('qimen_analysis.md')
+    liuyao = read_md_file('liuyao_analysis.md')
+    numerology = read_md_file('numerology_analysis.md')
+    name_analysis = read_md_file('name_analysis.md')
+
+    # 轉換markdown到HTML的簡單函數（保留換行和格式）
+    def md_to_html(md_text):
+        if not md_text:
+            return ''
+        # 簡單處理：轉換標題、粗體、換行
+        html = md_text
+        # ### 標題
+        html = html.replace('### ', '<h4 style="color: #a5b4fc; margin: 20px 0 10px 0; font-size: 1.2em;">')
+        html = html.replace('\n##', '</h4>\n##')
+        # ## 標題
+        html = html.replace('## ', '<h3 style="color: #8b9cff; margin: 25px 0 15px 0; font-size: 1.4em;">')
+        html = html.replace('\n#', '</h3>\n#')
+        # # 標題
+        html = html.replace('# ', '<h2 style="color: #667eea; margin: 30px 0 20px 0; font-size: 1.6em;">')
+        # 粗體
+        import re
+        html = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', html)
+        # 換行
+        html = html.replace('\n\n', '</p><p style="margin: 15px 0; line-height: 1.8; color: #e0e0e0;">')
+        html = html.replace('\n', '<br>')
+        # 包裝在段落中
+        html = f'<p style="margin: 15px 0; line-height: 1.8; color: #e0e0e0;">{html}</p>'
+        return html
+
+    # 開始生成HTML
+    html = f"""<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{name} 命理綜合分析報告</title>
+    <style>
+        * {{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }}
+
+        body {{
+            font-family: "PingFang TC", "Microsoft JhengHei", "Heiti TC", sans-serif;
+            line-height: 1.8;
+            color: #e0e0e0;
+            background: #000000;
+            padding: 20px;
+        }}
+
+        .container {{
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #1a1a1a;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }}
+
+        .header {{
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }}
+
+        .header h1 {{
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }}
+
+        .birth-info {{
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            backdrop-filter: blur(10px);
+        }}
+
+        .birth-info-grid {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }}
+
+        .info-item {{
+            text-align: center;
+        }}
+
+        .info-label {{
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }}
+
+        .info-value {{
+            font-size: 1.3em;
+            font-weight: bold;
+        }}
+
+        .four-pillars {{
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }}
+
+        .pillar {{
+            background: rgba(255,255,255,0.15);
+            padding: 15px 25px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 100px;
+        }}
+
+        .pillar-label {{
+            font-size: 0.9em;
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }}
+
+        .pillar-value {{
+            font-size: 1.8em;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }}
+
+        .content {{
+            padding: 40px;
+            background: #1a1a1a;
+        }}
+
+        .section {{
+            margin-bottom: 50px;
+            background: #2a2a2a;
+            border-radius: 15px;
+            padding: 30px;
+            border-left: 5px solid #8b9cff;
+        }}
+
+        .section-title {{
+            font-size: 2em;
+            color: #8b9cff;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #8b9cff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }}
+
+        .analysis-content {{
+            background: #1f1f1f;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 20px;
+            line-height: 2;
+            color: #e0e0e0;
+        }}
+
+        .footer {{
+            background: #0a0a0a;
+            padding: 30px;
+            text-align: center;
+            color: #b0b0b0;
+            border-top: 1px solid #333;
+        }}
+
+        .timestamp {{
+            color: #808080;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }}
+
+        .nav-menu {{
+            background: rgba(255,255,255,0.15);
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 25px;
+            backdrop-filter: blur(10px);
+        }}
+
+        .nav-menu h3 {{
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            text-align: center;
+            color: white;
+        }}
+
+        .nav-grid {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }}
+
+        .nav-link {{
+            display: block;
+            padding: 12px 15px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+        }}
+
+        .nav-link:hover {{
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }}
+
+        html {{
+            scroll-behavior: smooth;
+        }}
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <h1>✨ {name} 命理綜合分析報告</h1>
+
+        <div class="birth-info">
+            <div class="birth-info-grid">
+                <div class="info-item">
+                    <div class="info-label">出生時間</div>
+                    <div class="info-value">{birth_gregorian}</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">出生地</div>
+                    <div class="info-value">{location}</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">性別</div>
+                    <div class="info-value">{gender}</div>
+                </div>
+            </div>
+
+            <!-- Four Pillars -->
+            <div class="four-pillars">
+                <div class="pillar">
+                    <div class="pillar-label">年柱</div>
+                    <div class="pillar-value">{year_pillar}</div>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-label">月柱</div>
+                    <div class="pillar-value">{month_pillar}</div>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-label">日柱</div>
+                    <div class="pillar-value">{day_pillar}</div>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-label">時柱</div>
+                    <div class="pillar-value">{hour_pillar}</div>
+                </div>
+            </div>
+
+            <!-- Navigation Menu -->
+            <div class="nav-menu">
+                <h3>📑 報告導航</h3>
+                <div class="nav-grid">
+                    <a href="#synthesis" class="nav-link">🎯 綜合分析總覽</a>
+                    <a href="#bazi" class="nav-link">📿 八字命理分析</a>
+                    <a href="#ziwei" class="nav-link">⭐ 紫微斗數分析</a>
+                    <a href="#astrology" class="nav-link">🌟 心理占星分析</a>
+                    <a href="#plum" class="nav-link">🌸 梅花易數分析</a>
+                    <a href="#qimen" class="nav-link">🗺️ 奇門遁甲分析</a>
+                    <a href="#liuyao" class="nav-link">☯️ 六爻占卜分析</a>
+                    <a href="#numerology" class="nav-link">🔢 生命靈數分析</a>
+                    <a href="#name" class="nav-link">📝 姓名學分析</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+"""
+
+    # 綜合分析
+    if synthesis:
+        html += f"""
+        <div class="section" id="synthesis">
+            <h2 class="section-title">🎯 綜合分析總覽</h2>
+            <div class="analysis-content">
+                {md_to_html(synthesis)}
+            </div>
+        </div>
+"""
+
+    # 八字命理
+    if bazi:
+        html += f"""
+        <div class="section" id="bazi">
+            <h2 class="section-title">📿 八字命理分析</h2>
+            <div class="analysis-content">
+                {md_to_html(bazi)}
+            </div>
+        </div>
+"""
+
+    # 紫微斗數
+    if ziwei:
+        html += f"""
+        <div class="section" id="ziwei">
+            <h2 class="section-title">⭐ 紫微斗數分析</h2>
+            <div class="analysis-content">
+                {md_to_html(ziwei)}
+            </div>
+        </div>
+"""
+
+    # 西洋占星
+    if astrology:
+        html += f"""
+        <div class="section" id="astrology">
+            <h2 class="section-title">🌟 心理占星分析</h2>
+            <div class="analysis-content">
+                {md_to_html(astrology)}
+            </div>
+        </div>
+"""
+
+    # 梅花易數
+    if plum:
+        html += f"""
+        <div class="section" id="plum">
+            <h2 class="section-title">🌸 梅花易數分析</h2>
+            <div class="analysis-content">
+                {md_to_html(plum)}
+            </div>
+        </div>
+"""
+
+    # 奇門遁甲
+    if qimen:
+        html += f"""
+        <div class="section" id="qimen">
+            <h2 class="section-title">🗺️ 奇門遁甲分析</h2>
+            <div class="analysis-content">
+                {md_to_html(qimen)}
+            </div>
+        </div>
+"""
+
+    # 六爻
+    if liuyao:
+        html += f"""
+        <div class="section" id="liuyao">
+            <h2 class="section-title">☯️ 六爻占卜分析</h2>
+            <div class="analysis-content">
+                {md_to_html(liuyao)}
+            </div>
+        </div>
+"""
+
+    # 生命靈數
+    if numerology:
+        html += f"""
+        <div class="section" id="numerology">
+            <h2 class="section-title">🔢 生命靈數分析</h2>
+            <div class="analysis-content">
+                {md_to_html(numerology)}
+            </div>
+        </div>
+"""
+
+    # 姓名學
+    if name_analysis:
+        html += f"""
+        <div class="section" id="name">
+            <h2 class="section-title">📝 姓名學分析</h2>
+            <div class="analysis-content">
+                {md_to_html(name_analysis)}
+            </div>
+        </div>
+"""
+
+    # Footer
+    html += f"""
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p><strong>重要提醒</strong></p>
+        <p>本報告整合<strong>八字命理</strong>、<strong>紫微斗數</strong>、<strong>西洋占星</strong>、<strong>梅花易數</strong>、<strong>奇門遁甲</strong>、<strong>六爻占卜</strong>、<strong>生命靈數</strong>、<strong>姓名學</strong>八大命理方法的綜合分析。</p>
+        <p><strong>命理分析僅供參考，您的人生由自己掌握。</strong></p>
+        <p class="timestamp">分析時間：{datetime.now().strftime('%Y年%m月%d日 %H:%M:%S')}</p>
+        <p class="timestamp">SuperClaude Fortune-Telling System v2.0 (Comprehensive 8-Method Analysis)</p>
+    </div>
+</div>
 </body>
 </html>
 """

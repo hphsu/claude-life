@@ -1,0 +1,115 @@
+{
+  "app": {
+    "name": "Fortune Platform",
+    "tagline": "Traditional Chinese Fortune-Telling & Analysis"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "profiles": "Profiles",
+    "orders": "Orders",
+    "reports": "Reports",
+    "account": "Account"
+  },
+  "profile": {
+    "title": "Profile",
+    "create": "Create Profile",
+    "edit": "Edit Profile",
+    "delete": "Delete Profile",
+    "personalInfo": "Personal Information",
+    "birthInfo": "Birth Information",
+    "name": "Full Name",
+    "gender": "Gender",
+    "genderMale": "Male",
+    "genderFemale": "Female",
+    "genderOther": "Other",
+    "birthDate": "Birth Date",
+    "birthTime": "Birth Time",
+    "birthLocation": "Birth Location",
+    "timezone": "Timezone",
+    "namePlaceholder": "Enter full name",
+    "locationPlaceholder": "e.g., Taipei, Taiwan",
+    "nameRequired": "Name is required",
+    "nameMinLength": "Name must be at least 2 characters",
+    "genderRequired": "Gender is required",
+    "birthDateRequired": "Birth date is required",
+    "birthDateInvalid": "Invalid date format (use YYYY-MM-DD)",
+    "birthTimeRequired": "Birth time is required",
+    "birthTimeInvalid": "Invalid time format (use HH:MM)",
+    "birthLocationRequired": "Birth location is required",
+    "locationMinLength": "Location must be at least 3 characters",
+    "timezoneRequired": "Timezone is required",
+    "birthInfoDescription": "Birth date, time, and location are essential for accurate fortune-telling analysis"
+  },
+  "order": {
+    "title": "Order",
+    "create": "Create Order",
+    "summary": "Order Summary",
+    "expertSystems": "Expert Systems",
+    "selectSystems": "Select Fortune-Telling Systems",
+    "price": "Price",
+    "discount": "Discount",
+    "total": "Total",
+    "placeOrder": "Place Order"
+  },
+  "report": {
+    "title": "Report",
+    "generatedOn": "Generated on",
+    "version": "Version",
+    "downloadPdf": "Download PDF",
+    "downloadHtml": "Download HTML",
+    "showFull": "Show Full Report",
+    "loadFull": "Load Full Report",
+    "metadata": "Report Metadata",
+    "failed": "Failed to Load Report",
+    "noData": "No report data available",
+    "comprehensiveNotice": "This is a comprehensive report. Would you like to view it all at once?"
+  },
+  "expertSystems": {
+    "bazi": "BaZi (Eight Characters)",
+    "ziwei": "Zi Wei Dou Shu (Purple Star Astrology)",
+    "astrology": "Western Astrology",
+    "numerology": "Numerology",
+    "plum_blossom": "Plum Blossom Divination",
+    "qimen": "Qi Men Dun Jia",
+    "liuyao": "Liu Yao (Six Lines)",
+    "name_analysis": "Name Analysis"
+  },
+  "job": {
+    "status": "Status",
+    "progress": "Progress",
+    "queued": "Queued",
+    "running": "Running",
+    "completed": "Completed",
+    "failed": "Failed",
+    "cancel": "Cancel Job"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "update": "Update",
+    "back": "Back",
+    "next": "Next",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "confirm": "Confirm",
+    "close": "Close"
+  },
+  "validation": {
+    "required": "This field is required",
+    "minLength": "Must be at least {{count}} characters",
+    "maxLength": "Must be at most {{count}} characters",
+    "email": "Invalid email address",
+    "url": "Invalid URL"
+  },
+  "error": {
+    "unknown": "An unknown error occurred",
+    "network": "Network error. Please check your connection.",
+    "unauthorized": "You are not authorized to perform this action",
+    "notFound": "The requested resource was not found",
+    "serverError": "Server error. Please try again later."
+  }
+}
